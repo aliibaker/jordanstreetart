@@ -8,12 +8,13 @@
     "@testing-library/user-event": "^12.1.10",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
+    "react-map-gl": "^5.2.9",
     "react-scripts": "4.0.0",
     "web-vitals": "^0.2.4"
   },
   "scripts": {
     "start": "react-scripts start",
-    "start-api": "cd api && flask run --no-debugger",
+    "start-api": "cd api && env/bin/flask run --no-debugger",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

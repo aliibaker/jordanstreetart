@@ -1,0 +1,292 @@
+{
+    "Grafitti":[
+        {
+            
+            "id": 0,
+            "title": "placeholder 0",
+            "date of creation": "March 11th 2000",
+            "artist": "artist 0",
+            "location": {"lat": 31.96, "lng": 35.930359},
+            "image": "graf_0.jpg",
+            "collectionId": 0
+        },
+        {
+            "id":1,
+            "title": "placeholder 1",
+            "date of creation": "March 11th 2000",
+            "artist": "artist 1",
+            "location": {"lat": 31.88, "lng": 35.93},
+            "image": "graf_1.jpg",
+            "collectionId": 1
+            
+        },
+        {
+            "id":2,
+            "title": "placeholder 2",
+            "date of creation": "March 11th 2000",
+            "artist": "artist 2",
+            "location": {"lat": 31.87, "lng": 35.93},
+            "image": "graf_2.jpg",
+            "collectionId": 2
+        },
+        {
+            "id":3,
+            "title": "placeholder 3",
+            "date of creation": "March 11th 2000",
+            "artist": "artist 3",
+            "location": {"lat": 31.89, "lng": 35.86},
+            "image": "graf_3.jpg",
+            "collectionId": 3
+        },
+        {
+            "id":4,
+            "title": "Girl with Purple hair",
+            "date of creation": "March 11th 2000",
+            "artist": "Unknown",
+            "location": {"lat": 31.9584112, "lng": 35.9157078},
+            "image": "graf_4.jpg",
+            "collectionId": 4
+        },
+        {
+            "id":5,
+            "title": "placeholder 5",
+            "date of creation": "March 11th 2000",
+            "artist": "artist 5",
+            "location": {"lat": 31.9584112, "lng": 35.9157078},
+            "image": "graf_5.jpg",
+            "collectionId": 4
+        },
+        {
+            "id":6,
+            "title": "placeholder 6",
+            "date of creation": "March 11th 2000",
+            "artist": "artist 6",
+            "location": {"lat": 31.9584607, "lng": 35.9148032},
+            "image": "graf_6.jpg",
+            "collectionId": 5
+        },
+        {
+            "id":7,
+            "title": "placeholder 7",
+            "date of creation": "March 11th 2000",
+            "artist": "artist 7",
+            "location": {"lat": 31.9584607, "lng": 35.9148032},
+            "image": "graf_7.jpg",
+            "collectionId": 5
+        },
+        {
+            "id":8,
+            "title": "placeholder 8",
+            "date of creation": "March 11th 2000",
+            "artist": "artist 8",
+            "location": {"lat": 31.9584607, "lng": 35.9148032},
+            "image": "graf_8.jpg",
+            "collectionId": 5
+        },
+        {
+            "id":9,
+            "title": "Pokemon Waffle house ",
+            "date of creation": "March 11th 2000",
+            "artist": "artist 9",
+            "location": {"lat": 31.9487134, "lng": 35.9274944},
+            "image": "graf_9.jpg",
+            "collectionId": 6
+        },
+        {
+            "id":10,
+            "title": "Fairouz",
+            "date of creation": "March 11th 2000",
+            "artist": "artist 10",
+            "location": {"lat": 31.9484543, "lng": 35.9274967},
+            "image": "graf_10.jpg",
+            "collectionId": 7
+        },
+        {
+            "id":11,
+            "title": "Ballerina",
+            "date of creation": "March 11th 2000",
+            "artist": "artist 11",
+            "location": {"lat": 31.9484543, "lng": 35.9274967},
+            "image": "graf_11.jpg",
+            "collectionId": 7
+        },
+        {
+            "id":12,
+            "title": "Title Unknown: Yellow Man",
+            "date of creation": "March 11th 2000",
+            "artist": "artist 12",
+            "location": {"lat": 31.9487578, "lng": 35.9283809},
+            "image": "graf_12.jpg",
+            "collectionId": 8
+        },
+        {
+            "id":13,
+            "title": "Title Unknown: Orange Girl",
+            "date of creation": "March 11th 2000",
+            "artist": "artist 13",
+            "location": {"lat": 31.9488463, "lng": 35.9281713},
+            "image": "graf_13.jpg",
+            "collectionId": 9
+        },
+        {
+            "id":14,
+            "title": "Samurai X",
+            "date of creation": "March 11th 2000",
+            "artist": "artist 14",
+            "location": {"lat": 31.9488463, "lng": 35.9281713},
+            "image": "graf_14.jpg",
+            "collectionId": 9
+        },
+        {
+            "id":15,
+            "title": "Title Unknown",
+            "date of creation": "March 11th 2000",
+            "artist": "Artist Unknown",
+            "location": {"lat": 31.9488463, "lng": 35.9281713},
+            "image": "graf_15.jpg",
+            "collectionId": 9
+        },
+        {
+            "id":16,
+            "title": "Title Unknown",
+            "date of creation": "March 11th 2000",
+            "artist": "Artist Unknown",
+            "location": {"lat": 31.9488463, "lng": 35.9281713},
+            "image": "graf_16.jpg",
+            "collectionId": 9
+        },
+        {
+            "id":17,
+            "title": "Title Unknown: Green Guy with Squid",
+            "date of creation": "March 11th 2000",
+            "artist": "Artist Unknown",
+            "location": {"lat": 31.9488463, "lng": 35.9281713},
+            "image": "graf_17.jpg",
+            "collectionId": 9
+        },
+        {
+            "id":18,
+            "title": "Title Unknown: SIN",
+            "date of creation": "March 11th 2000",
+            "artist": "Unknown Artist",
+            "location": {"lat": 31.9488463, "lng": 35.9281713},
+            "image": "graf_18.jpg",
+            "collectionId": 9
+        },
+        {
+            "id":19,
+            "title": "Title Unknown: Passed out Blue Guy",
+            "date of creation": "March 11th 2000",
+            "artist": "Unknown Artist",
+            "location": {"lat": 31.9488463, "lng": 35.9281713},
+            "image": "graf_19.jpg",
+            "collectionId": 9
+        },
+        {
+            "id":20,
+            "title": "Title Unknown: Rainbow Street Mermaid",
+            "date of creation": "March 11th 2000",
+            "artist": "Unknown Artist",
+            "location": {"lat": 31.9488463, "lng": 35.9281713},
+            "image": "graf_20.jpg",
+            "collectionId": 9
+        },
+        {
+            "id":21,
+            "title": "Title Unknown",
+            "date of creation": "March 11th 2000",
+            "artist": "Unknown Artist",
+            "location": {"lat": 31.9488463, "lng": 35.9281713},
+            "image": "graf_21.jpg",
+            "collectionId": 9
+        },
+        {
+            "id":22,
+            "title": "Title Unknown: Equality",
+            "date of creation": "March 11th 2000",
+            "artist": "Unknown Artist",
+            "location": {"lat": 31.9495046, "lng": 35.9271464},
+            "image": "graf_22.jpg",
+            "collectionId": 10
+        },
+        {
+            "id":23,
+            "title": "Title Unknown: Amman",
+            "date of creation": "March 11th 2000",
+            "artist": "Unknown Artist",
+            "location": {"lat": 31.9496221, "lng": 35.9270619},
+            "image": "graf_23.jpg",
+            "collectionId": 11
+        },
+        {
+            "id":24,
+            "title": "Title Unknown: Blue Boy",
+            "date of creation": "March 11th 2000",
+            "artist": "Unknown Artist",
+            "location": {"lat": 31.9512997, "lng": 35.9322104},
+            "image": "graf_24.jpg",
+            "collectionId": 12
+        },
+        {
+            "id":25,
+            "title": "Title Unknown: Arab Women with Caligraphy",
+            "date of creation": "March 11th 2000",
+            "artist": "Unknown Artist",
+            "location": {"lat": 31.9512997, "lng": 35.9322104},
+            "image": "graf_25.jpg",
+            "collectionId": 12
+        },
+        {
+            "id":26,
+            "title": "Title Unknown:Rose Bird of Jordan",
+            "date of creation": "March 11th 2000",
+            "artist": "Unknown Artist",
+            "location": {"lat": 31.9484671, "lng": 35.9326801},
+            "image": "graf_26.jpg",
+            "collectionId": 13
+        },
+        {
+            "id":27,
+            "title": "Title Unknown: Finjan",
+            "date of creation": "March 11th 2000",
+            "artist": "Unknown Artist",
+            "location": {"lat": 31.9484671, "lng": 35.9326801},
+            "image": "graf_27.jpg",
+            "collectionId": 13
+        },
+        {
+            "id":28,
+            "title": "Title Unknown: Wise Man with Coffee",
+            "date of creation": "March 11th 2000",
+            "artist": "Suhaib (Need to look this up)",
+            "location": {"lat": 31.9537237, "lng": 35.9264832},
+            "image": "graf_28.jpg",
+            "collectionId": 14
+        },
+        {
+            "id":29,
+            "title": "Title Unknown: Purple Lady",
+            "date of creation": "March 11th 2000",
+            "artist": "Unknown Artist",
+            "location": {"lat": 31.9493387, "lng": 35.9327042},
+            "image": "graf_29.jpg",
+            "collectionId": 15
+        },
+        {
+            "id":30,
+            "title": "Title Unknown: Flamengo",
+            "date of creation": "March 11th 2000",
+            "artist": "Unknown Artist",
+            "location": {"lat": 31.9548167, "lng": 35.9244115},
+            "image": "graf_30.jpg",
+            "collectionId": 16
+        }
+        
+
+
+
+
+
+    ]
+
+}
