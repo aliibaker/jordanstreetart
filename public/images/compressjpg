@@ -1,0 +1,5 @@
+#!/bin/sh
+
+for i in *.jpg; do
+    mogrify -quality 80 -resize 80 $i
+done

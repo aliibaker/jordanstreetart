@@ -1,12 +1,16 @@
 import * as React from 'react';
 import { useState, useEffect} from 'react';
+import axios from 'axios'
 
 import Data from '../grafitti.json'
 import './GrafMap.css'
 
 import MapGL, {Marker} from 'react-map-gl';
 
+import GrafMarker from './GrafMarker'
+
 function GrafMap() {
+const [data, setData] = useState([]);
 
 const [viewport, setViewport] = useState({
     latitude: 31.963158,
@@ -14,6 +18,20 @@ const [viewport, setViewport] = useState({
     zoom: 14
   });
 
+  useEffect(() =>{
+    fetch('/graffiti').then(res => res.json()).then(data => {
+      setData(data)
+    })
+    // async function getData(){
+    //   const result = await axios(
+    //     '/graffiti'
+    //   );
+    //   return result;
+    // }
+
+    // let result = getData()
+    console.log('yes')
+  }, [])
   return (
     <MapGL
       {...viewport}
@@ -24,15 +42,12 @@ const [viewport, setViewport] = useState({
       mapboxApiAccessToken= 'pk.eyJ1IjoiYWxpaWJha2VzIiwiYSI6ImNrZHl2Ym9uMjFkZXYzMG9zMnR3M21rcmUifQ.NIMfO9cOOS7XQzlRCPLvPA'
     >
         {
-            Data.Grafitti.map(graf =>(
-
-                <Marker key = {graf.id} latitude = {graf.location.lat} longitude = {graf.location.lng}>
-
-                    <button className = "grafImage">
-                        <img  src = {`/images/${graf.image}`} />
-                    </button>
-
-                </Marker>
+            data.map(graf =>(
+                
+                <GrafMarker id = {graf.id} filename = {graf.filename}
+                            artist = {graf.artist} lat = {graf.lat}
+                            lng = {graf.lng}
+                            />
             )
 
             )

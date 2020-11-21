@@ -1,0 +1,5 @@
+#!/bin/sh
+for i in *; 
+    do uuid=$(cat /proc/sys/kernel/random/uuid) && mv -- "$i" "$uuid.${i##*.}" 
+done
+
