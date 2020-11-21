@@ -39,7 +39,7 @@ const [viewport, setViewport] = useState({
       height="100vh"
       mapStyle="mapbox://styles/mapbox/dark-v9"
       onViewportChange={nextViewport => setViewport(nextViewport)}
-      mapboxApiAccessToken= 'pk.eyJ1IjoiYWxpaWJha2VzIiwiYSI6ImNrZHl2Ym9uMjFkZXYzMG9zMnR3M21rcmUifQ.NIMfO9cOOS7XQzlRCPLvPA'
+      mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
     >
         {
             data.map(graf =>(
