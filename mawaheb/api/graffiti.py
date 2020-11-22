@@ -44,4 +44,4 @@ def get_graffiti():
 
     print((final_collection))
 
-    return jsonify(result)
+    return jsonify(final_collection)

@@ -5,12 +5,13 @@ import axios from 'axios'
 import Data from '../grafitti.json'
 import './GrafMap.css'
 
-import MapGL, {Marker} from 'react-map-gl';
+import MapGL, {Popup} from 'react-map-gl';
 
 import GrafMarker from './GrafMarker'
 
 function GrafMap() {
 const [data, setData] = useState([]);
+
 
 const [viewport, setViewport] = useState({
     latitude: 31.963158,
@@ -30,29 +31,31 @@ const [viewport, setViewport] = useState({
     // }
 
     // let result = getData()
-    console.log('yes')
+    console.log(data)
   }, [])
   return (
-    <MapGL
-      {...viewport}
-      width="100vw"
-      height="100vh"
-      mapStyle="mapbox://styles/mapbox/dark-v9"
-      onViewportChange={nextViewport => setViewport(nextViewport)}
-      mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
-    >
-        {
-            data.map(graf =>(
-                
-                <GrafMarker id = {graf.id} filename = {graf.filename}
-                            artist = {graf.artist} lat = {graf.lat}
-                            lng = {graf.lng}
-                            />
-            )
+    <div id = "map">
+      <MapGL
+        {...viewport}
+        width="100vw"
+        height="95.8vh"
+        mapStyle="mapbox://styles/mapbox/dark-v9"
+        onViewportChange={nextViewport => setViewport(nextViewport)}
+        mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
+      >
+          {data !== null &&
+              data.map(graf =>(
+                  
+                  <GrafMarker grafCollection = {graf.collections}
+                              />
+              )
 
-            )
-        }
-    </MapGL>
+              )
+          }
+      </MapGL>
+
+    </div>
+
 
     
   );
