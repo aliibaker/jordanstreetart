@@ -20,7 +20,7 @@ const [viewport, setViewport] = useState({
   });
 
   useEffect(() =>{
-    fetch('/graffiti').then(res => res.json()).then(data => {
+    fetch('/api/graffiti').then(res => res.json()).then(data => {
       setData(data)
     })
     // async function getData(){

@@ -4,6 +4,10 @@ from collections import defaultdict
 
 db = mawaheb.db
 
+@mawaheb.app.route('/')
+def index():
+    return mawaheb.app.send_static_file('index.html')
+
 # @mawaheb.app.route('/graffiti', methods=['POST'])
 # def add_graffiti():
 #     filename = request.json['filename']
@@ -19,7 +23,7 @@ db = mawaheb.db
     
 #     return mawaheb.graffiti_schema.jsonify(new_graffiti)
 
-@mawaheb.app.route('/graffiti', methods=['GET'])
+@mawaheb.app.route('/api/graffiti', methods=['GET'])
 def get_graffiti():
     all_graffiti = mawaheb.Graffiti.query.all()
     print(all_graffiti)
