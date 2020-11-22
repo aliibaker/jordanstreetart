@@ -71,13 +71,13 @@ const GrafMarker = (props) => {
                         <img className = "top" src = {`/images/${data.filename}`} />
                     </button>
                 </Marker>
-                <div className = "popup">
+                {/* <div className = "popup">
                     {showPopup &&  
                         <Popup latitude = {data.lat} longitude = {data.lng} offsetLeft = {40}>
                             <h1>test</h1>
                         </Popup>
                     }
-                </div>
+                </div> */}
 
              </div>
             }

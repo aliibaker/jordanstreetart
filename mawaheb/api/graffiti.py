@@ -4,20 +4,20 @@ from collections import defaultdict
 
 db = mawaheb.db
 
-@mawaheb.app.route('/graffiti', methods=['POST'])
-def add_graffiti():
-    filename = request.json['filename']
-    artist = request.json['artist']
-    title = request.json['title']
-    lat = request.json['lat']
-    lng = request.json['lng']
+# @mawaheb.app.route('/graffiti', methods=['POST'])
+# def add_graffiti():
+#     filename = request.json['filename']
+#     artist = request.json['artist']
+#     title = request.json['title']
+#     lat = request.json['lat']
+#     lng = request.json['lng']
 
-    new_graffiti = mawaheb.Graffiti(filename, artist, title, lat, lng)
+#     new_graffiti = mawaheb.Graffiti(filename, artist, title, lat, lng)
 
-    db.session.add(new_graffiti)
-    db.session.commit()
+#     db.session.add(new_graffiti)
+#     db.session.commit()
     
-    return mawaheb.graffiti_schema.jsonify(new_graffiti)
+#     return mawaheb.graffiti_schema.jsonify(new_graffiti)
 
 @mawaheb.app.route('/graffiti', methods=['GET'])
 def get_graffiti():
