@@ -1,7 +1,3 @@
-INSERT INTO graffiti(id, filename, artist, lat, lng) VALUES (0, 'graf_0.jpg', 'placeholder', 31.96, 35.930359);
-INSERT INTO graffiti(id, filename, artist, lat, lng) VALUES (1, 'graf_1.jpg', 'placeholder', 31.88, 35.93);
-INSERT INTO graffiti(id, filename, artist, lat, lng) VALUES (2, 'graf_2.jpg', 'placeholder', 31.87, 35.93);
-INSERT INTO graffiti(id, filename, artist, lat, lng) VALUES (3, 'graf_3.jpg', 'placeholder', 31.89, 35.86);
 INSERT INTO graffiti(id, filename, artist, lat, lng) VALUES (4, 'graf_4.jpg', 'placeholder', 31.9584112, 35.9157078);
 INSERT INTO graffiti(id, filename, artist, lat, lng) VALUES (5, 'graf_5.jpg', 'placeholder', 31.9584112, 35.9157078);
 INSERT INTO graffiti(id, filename, artist, lat, lng) VALUES (6, 'graf_6.jpg', 'placeholder', 31.9584607, 35.9148032);
