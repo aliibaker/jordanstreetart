@@ -1,5 +1,6 @@
 import * as React from 'react';
 import {useState, useEffect} from 'react';
+import Card from 'react-bootstrap/Card'
 import {Marker, Popup} from 'react-map-gl';
 import './GrafMarker.css'
 
@@ -11,6 +12,9 @@ const GrafMarker = (props) => {
     const[nextData, setNextData] = useState(grafCollection[nextIndex])
     const[url, setUrl] = useState('')
     const[showPopup, setShowPopup] = useState(false)
+
+    const[hoverMarker, setHoverMarker] = useState(false)
+    const[hoverPopup, setHoverPopup] = useState(false)
 
     // setData(grafCollection[index])
     // useEffect(() =>{
@@ -26,15 +30,19 @@ const GrafMarker = (props) => {
     //     }, 2000)
     //     return () => clearInterval(interval)
     // }, [])
-    const onMarkerOver = () =>{
+
+    const onPopupClose = () =>{
+        setHoverMarker(false)
+        setShowPopup(false)
+    }
+    const onPopupOver = () =>{
         setShowPopup(true)
     }
-    const onPopupClose = () =>{
+    const onPopupLeave = () => {
         setShowPopup(false)
     }
-    const onMarkerLeave = () =>{
-        setShowPopup(false)
-    }
+
+
 
     useEffect(() =>{
         if(!showPopup){
@@ -58,7 +66,7 @@ const GrafMarker = (props) => {
 
 
     return(
-        <div onMouseOver = {onMarkerOver} onMouseLeave = {onMarkerLeave}>
+        <div onMouseOver={onPopupOver} onMouseLeave = {onPopupLeave}>
             {data !== null &&
               <div>
                 <Marker key = {data.id} latitude = {data.lat} longitude = {data.lng} anchor = "bottom">
@@ -71,13 +79,24 @@ const GrafMarker = (props) => {
                         <img className = "top" src = {`/images/${data.filename}`} />
                     </button>
                 </Marker>
-                {/* <div className = "popup">
+                <div className = "popup" >
                     {showPopup &&  
-                        <Popup latitude = {data.lat} longitude = {data.lng} offsetLeft = {40}>
-                            <h1>test</h1>
+                        <Popup latitude = {data.lat} longitude = {data.lng} offsetLeft = {40} offsetTop = {20} onClose = {onPopupClose}>
+                            <div>
+                            <Card style={{ width: '14rem' }}>
+                            <Card.Img variant="top" src={`/hd_images/${data.filename}`} className='cardImage'/>
+                            <Card.Body>
+                                <Card.Title>{data.title === null && <p>placeholder title</p>}</Card.Title>
+                                <Card.Text>
+                                    By {data.artist} artist
+                                </Card.Text>
+                      
+                            </Card.Body>
+                            </Card>
+                            </div>
                         </Popup>
                     }
-                </div> */}
+                </div>
 
              </div>
             }
