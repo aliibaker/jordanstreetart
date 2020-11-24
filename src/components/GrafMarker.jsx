@@ -16,6 +16,8 @@ const GrafMarker = (props) => {
     const[hoverMarker, setHoverMarker] = useState(false)
     const[hoverPopup, setHoverPopup] = useState(false)
 
+    
+
     // setData(grafCollection[index])
     // useEffect(() =>{
     //     const interval = setInterval(() =>{
