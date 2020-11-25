@@ -1,11 +1,8 @@
 import * as React from 'react';
 import { useState, useEffect} from 'react';
-import axios from 'axios'
-
-import Data from '../grafitti.json'
 import './GrafMap.css'
 
-import MapGL, {Popup} from 'react-map-gl';
+import MapGL from 'react-map-gl';
 
 import GrafMarker from './GrafMarker'
 
@@ -23,15 +20,6 @@ const [viewport, setViewport] = useState({
     fetch('/api/graffiti').then(res => res.json()).then(data => {
       setData(data)
     })
-    // async function getData(){
-    //   const result = await axios(
-    //     '/graffiti'
-    //   );
-    //   return result;
-    // }
-
-    // let result = getData()
-    console.log(data)
   }, [])
   return (
     <div id = "map">
@@ -46,7 +34,7 @@ const [viewport, setViewport] = useState({
           {data !== null &&
               data.map(graf =>(
                   
-                  <GrafMarker grafCollection = {graf.collections}
+                  <GrafMarker grafCollection = {graf.collections} key = {graf.collections[0].id}
                               />
               )
 

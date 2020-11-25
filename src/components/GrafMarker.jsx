@@ -87,13 +87,6 @@ const GrafMarker = (props) => {
                             <div>
                             <Card style={{ width: '14rem' }}>
                             <Card.Img variant="top" src={`/hd_images/${data.filename}`} className='cardImage'/>
-                            <Card.Body>
-                                <Card.Title>{data.title === null && <p>placeholder title</p>}</Card.Title>
-                                <Card.Text>
-                                    By {data.artist} artist
-                                </Card.Text>
-                      
-                            </Card.Body>
                             </Card>
                             </div>
                         </Popup>
