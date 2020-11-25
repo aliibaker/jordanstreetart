@@ -1,6 +1,7 @@
 import * as React from 'react';
 import {useState, useEffect} from 'react';
 import Card from 'react-bootstrap/Card'
+import Button from 'react-bootstrap/Button'
 import Carousel from 'react-bootstrap/Carousel'
 import {Marker, Popup} from 'react-map-gl';
 import './GrafMarker.css'
@@ -60,17 +61,26 @@ const GrafMarker = (props) => {
                     {showPopup &&  
                         <Popup latitude = {data.lat} longitude = {data.lng} offsetLeft = {40} offsetTop = {20} >
                             {grafCollection.length > 1 ? 
-                            <Carousel activeIndex = {index} onSelect={handleSelect}>
+                            <Carousel activeIndex = {index} onSelect={handleSelect} indicators={false}>
                             {grafCollection.map(graf => (
-                                <Carousel.Item>
+                                <Carousel.Item >
                                     <Card style={{ width: '14rem' }}>
                                         <Card.Img variant="top" src={`/hd_images/${graf.filename}`} className='cardImage'/>
+                                        <Card.Body>
+                                            <Card.Link href={`https://www.google.com/maps/search/?api=1&query=${data.lat},${data.lng}`} target="_blank">
+                                                View on Google Maps</Card.Link>
+                                        </Card.Body>
+                                        
                                     </Card>
                                 </Carousel.Item>
                             ))}
                         </Carousel> : 
                         <Card style={{ width: '14rem' }}>
-                            <Card.Img variant="top" src={`/hd_images/${filename}`} className='cardImage'/>
+                            <Card.Img variant="top" src={`/hd_images/${filename}`} className='cardImage'/>  
+                            <Card.Body>
+                                <Card.Link href={`https://www.google.com/maps/search/?api=1&query=${data.lat},${data.lng}`} target="_blank">
+                                                View on Google Maps</Card.Link>
+                            </Card.Body>
                         </Card>       
                         
                         }
