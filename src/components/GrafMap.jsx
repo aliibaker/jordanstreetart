@@ -6,6 +6,8 @@ import MapGL from 'react-map-gl';
 
 import GrafMarker from './GrafMarker'
 
+
+
 function GrafMap() {
 const [data, setData] = useState([]);
 
