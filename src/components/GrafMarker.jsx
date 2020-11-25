@@ -1,17 +1,19 @@
 import * as React from 'react';
 import {useState, useEffect} from 'react';
 import Card from 'react-bootstrap/Card'
+import Carousel from 'react-bootstrap/Carousel'
 import {Marker, Popup} from 'react-map-gl';
 import './GrafMarker.css'
 
 const GrafMarker = (props) => {
-    const[index, setIndex] = useState(0)
-    const {grafCollection, togglePopup} = props
-    const[data, setData] = useState(grafCollection[index])
-    const[nextIndex, setNextIndex] = useState(grafCollection.length > 1 ? index + 1: 0)
-    const[showPopup, setShowPopup] = useState(togglePopup)
+    const[index, setIndex] = useState(0);
+    const {grafCollection, togglePopup} = props;
+    const[data, setData] = useState(grafCollection[index]);
+    const[nextIndex, setNextIndex] = useState(grafCollection.length > 1 ? index + 1: 0);
+    const[showPopup, setShowPopup] = useState(togglePopup);
+    const[filename, setFilename] = useState(data.filename);
 
-    const[hoverMarker, setHoverMarker] = useState(false)
+    const[hoverMarker, setHoverMarker] = useState(false);
 
 
     const onPopupOver = () =>{
@@ -19,6 +21,12 @@ const GrafMarker = (props) => {
     }
     const onPopupLeave = () => {
         setShowPopup(false)
+    }
+
+    const handleSelect = (selectedIndex, e) => {
+        setIndex(selectedIndex);
+        setNextIndex(selectedIndex + 1);
+        setFilename(grafCollection[selectedIndex].filename)
     }
 
     useEffect(() =>{
@@ -44,20 +52,30 @@ const GrafMarker = (props) => {
               <div>
                 <Marker key = {data.id} latitude = {data.lat} longitude = {data.lng} anchor = "bottom">
                     <button className = "grafImage" 
-                    onClick={(e) => {
-                            e.preventDefault();
-                            window.open(`https://www.google.com/maps/search/?api=1&query=${data.lat},${data.lng}`);
-                            }     }        
-                            >
-                        <img className = "top" src = {`/images/${data.filename}`} alt ={`${data.filename}`}/>
+                    onClick={onPopupOver}>
+                        <img className = "top" src = {`/images/${filename}`} alt ={`${filename}`}/>
                     </button>
                 </Marker>
                 <div className = "popup" >
                     {showPopup &&  
                         <Popup latitude = {data.lat} longitude = {data.lng} offsetLeft = {40} offsetTop = {20} >
-                                <Card style={{ width: '14rem' }}>
-                                    <Card.Img variant="top" src={`/hd_images/${data.filename}`} className='cardImage'/>
-                                </Card>
+                            {grafCollection.length > 1 ? 
+                            <Carousel activeIndex = {index} onSelect={handleSelect}>
+                            {grafCollection.map(graf => (
+                                <Carousel.Item>
+                                    <Card style={{ width: '14rem' }}>
+                                        <Card.Img variant="top" src={`/hd_images/${graf.filename}`} className='cardImage'/>
+                                    </Card>
+                                </Carousel.Item>
+                            ))}
+                        </Carousel> : 
+                        <Card style={{ width: '14rem' }}>
+                            <Card.Img variant="top" src={`/hd_images/${filename}`} className='cardImage'/>
+                        </Card>       
+                        
+                        }
+                            
+
                         </Popup>
                     }
                 </div>
@@ -72,3 +90,11 @@ const GrafMarker = (props) => {
 
 
 export default GrafMarker;
+
+
+// <button className = "grafImage" 
+// onClick={(e) => {
+//         e.preventDefault();
+//         window.open(`https://www.google.com/maps/search/?api=1&query=${data.lat},${data.lng}`);
+//         }     }        
+//         >
