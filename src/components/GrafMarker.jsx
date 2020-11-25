@@ -6,45 +6,20 @@ import './GrafMarker.css'
 
 const GrafMarker = (props) => {
     const[index, setIndex] = useState(0)
-    const {grafCollection} = props
+    const {grafCollection, togglePopup} = props
     const[data, setData] = useState(grafCollection[index])
     const[nextIndex, setNextIndex] = useState(grafCollection.length > 1 ? index + 1: 0)
-    const[nextData, setNextData] = useState(grafCollection[nextIndex])
-    const[url, setUrl] = useState('')
-    const[showPopup, setShowPopup] = useState(false)
+    const[showPopup, setShowPopup] = useState(togglePopup)
 
     const[hoverMarker, setHoverMarker] = useState(false)
-    const[hoverPopup, setHoverPopup] = useState(false)
 
-    
 
-    // setData(grafCollection[index])
-    // useEffect(() =>{
-    //     const interval = setInterval(() =>{
-    //         if(grafCollection !== null){
-    //             setData(grafCollection[index])
-    //             if(index < grafCollection.length)
-    //                 setIndex(index + 1)
-    //             else
-    //                 setIndex(0)
-    //         }
-
-    //     }, 2000)
-    //     return () => clearInterval(interval)
-    // }, [])
-
-    const onPopupClose = () =>{
-        setHoverMarker(false)
-        setShowPopup(false)
-    }
     const onPopupOver = () =>{
         setShowPopup(true)
     }
     const onPopupLeave = () => {
         setShowPopup(false)
     }
-
-
 
     useEffect(() =>{
         if(!showPopup){
@@ -59,14 +34,10 @@ const GrafMarker = (props) => {
                     setNextIndex(0)
                 setData(grafCollection[index])
                 
-            }, 5000);
+            }, 3000);
             return () => clearInterval(interval)
         }
-
-
     })
-
-
     return(
         <div onMouseOver={onPopupOver} onMouseLeave = {onPopupLeave}>
             {data !== null &&
@@ -78,17 +49,15 @@ const GrafMarker = (props) => {
                             window.open(`https://www.google.com/maps/search/?api=1&query=${data.lat},${data.lng}`);
                             }     }        
                             >
-                        <img className = "top" src = {`/images/${data.filename}`} />
+                        <img className = "top" src = {`/images/${data.filename}`} alt ={`${data.filename}`}/>
                     </button>
                 </Marker>
                 <div className = "popup" >
                     {showPopup &&  
-                        <Popup latitude = {data.lat} longitude = {data.lng} offsetLeft = {40} offsetTop = {20} onClose = {onPopupClose}>
-                            <div>
-                            <Card style={{ width: '14rem' }}>
-                            <Card.Img variant="top" src={`/hd_images/${data.filename}`} className='cardImage'/>
-                            </Card>
-                            </div>
+                        <Popup latitude = {data.lat} longitude = {data.lng} offsetLeft = {40} offsetTop = {20} >
+                                <Card style={{ width: '14rem' }}>
+                                    <Card.Img variant="top" src={`/hd_images/${data.filename}`} className='cardImage'/>
+                                </Card>
                         </Popup>
                     }
                 </div>
