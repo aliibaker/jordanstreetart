@@ -61,7 +61,7 @@ const GrafMarker = (props) => {
                     {showPopup &&  
                         <Popup latitude = {data.lat} longitude = {data.lng} offsetLeft = {40} offsetTop = {20} >
                             {grafCollection.length > 1 ? 
-                            <Carousel activeIndex = {index} onSelect={handleSelect} >
+                            <Carousel activeIndex = {index} onSelect={handleSelect} indicators ={false} >
                             {grafCollection.map(graf => (
                                 <Carousel.Item >
                                     <Card style={{ width: '14rem' }}>
