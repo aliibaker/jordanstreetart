@@ -61,13 +61,13 @@ const GrafMarker = (props) => {
                     {showPopup &&  
                         <Popup latitude = {data.lat} longitude = {data.lng} offsetLeft = {40} offsetTop = {20} >
                             {grafCollection.length > 1 ? 
-                            <Carousel activeIndex = {index} onSelect={handleSelect} indicators={false}>
+                            <Carousel activeIndex = {index} onSelect={handleSelect} >
                             {grafCollection.map(graf => (
                                 <Carousel.Item >
                                     <Card style={{ width: '14rem' }}>
                                         <Card.Img variant="top" src={`/hd_images/${graf.filename}`} className='cardImage'/>
                                         <Card.Body>
-                                            <Card.Link href={`https://www.google.com/maps/search/?api=1&query=${data.lat},${data.lng}`} target="_blank">
+                                            <Card.Link href={`https://www.google.com/maps/search/?api=1&query=${data.lat},${data.lng}`}>
                                                 View on Google Maps</Card.Link>
                                         </Card.Body>
                                         
@@ -78,7 +78,7 @@ const GrafMarker = (props) => {
                         <Card style={{ width: '14rem' }}>
                             <Card.Img variant="top" src={`/hd_images/${filename}`} className='cardImage'/>  
                             <Card.Body>
-                                <Card.Link href={`https://www.google.com/maps/search/?api=1&query=${data.lat},${data.lng}`} target="_blank">
+                                <Card.Link href={`https://www.google.com/maps/search/?api=1&query=${data.lat},${data.lng}`}>
                                                 View on Google Maps</Card.Link>
                             </Card.Body>
                         </Card>       
