@@ -14,7 +14,7 @@
 
 ## Setup Tutorial
 
-To run the website locally on your computer you will need to have the latest versions of:
+To run the website locally on your computer you will need to have the latest versions of: 
 * [nodejs](https://nodejs.org/en/download/)
 * [npm](https://www.npmjs.com/get-npm) 
 * [yarn](https://yarnpkg.com/getting-started/install) 
