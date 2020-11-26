@@ -1,9 +1,8 @@
 # Amman Street Art
 
 [Amman Street Art](www.ammanstreetart.com) is an open source web application which displays the graffiti and murals of Amman on a virtual map. 
-![amman street art](/public/ASA_LOGO_3.png)
-![mural](/examples/IMG_5155.jpeg)
-![mural_on_website](/examples/capture2.PNG)
+![amman street art](/public/ASA_logo_3.png)
+|![mural](/examples/IMG_5155.jpeg)| ![mural_on_website](/examples/capture2.PNG)
 ![website](/examples/Capture3.PNG)
 
 ## Setup Tutorial
