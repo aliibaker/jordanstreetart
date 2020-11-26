@@ -5,7 +5,13 @@ import * as React from 'react'
 const Menubar = () => {
     return (
         <Navbar bg="dark" variant="dark">
-        <Navbar.Brand href="#home">
+        <Navbar.Brand href="/">
+          <img src="ASA_logo_3.png"
+               width = "30"
+               height = "30"
+               className = "d-inline-block align-top"
+               alt = "ASA Logo"
+               /> {' '}
           amman street art
         </Navbar.Brand>
         <Navbar.Collapse className = "justify-content-end">

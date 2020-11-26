@@ -63,7 +63,7 @@ const GrafMarker = (props) => {
                             {grafCollection.length > 1 ? 
                             <Carousel activeIndex = {index} onSelect={handleSelect} indicators ={false} >
                             {grafCollection.map(graf => (
-                                <Carousel.Item >
+                                <Carousel.Item key ={graf.id}>
                                     <Card style={{ width: '14rem' }}>
                                         <Card.Img variant="top" src={`/hd_images/${graf.filename}`} className='cardImage'/>
                                         <Card.Body>

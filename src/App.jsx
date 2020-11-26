@@ -9,9 +9,9 @@ function App() {
       <div id = 'menu'>
         <Menubar/>
       </div>
-      <div className = "map_box_container">
+      <section className = "map_box_container">
         <GrafMap/>
-      </div>
+      </section>
       
     </div>
   );
