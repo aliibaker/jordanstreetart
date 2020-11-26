@@ -1,70 +1,37 @@
-# Getting Started with Create React App
+# Amman Street Art
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Amman Street art is an open source web application which displays the graffiti and murals of Amman on a virtual map. 
+![amman street art](/public/ASA_LOGO3.png)
 
-## Available Scripts
+## Setup Tutorial
 
-In the project directory, you can run:
+To run the website locally on your computer you will need to have the latest versions of:
+* [nodejs](https://nodejs.org/en/download/)
+* [npm](https://www.npmjs.com/get-npm) 
+* [yarn](https://yarnpkg.com/getting-started/install) 
+* [Python >=3.8](https://www.python.org/downloads/)
 
-### `npm start`
+### Setting up React
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+This project relies on the framework ReactJS for the frontend. Make sure that you are able to [deploy a base React application](https://reactjs.org/docs/getting-started.html) if you've never done so before.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### Setting up frontend 
 
-### `npm test`
+To build the frontend you will need to set it up with [yarn](https://yarnpkg.com/getting-started/install). Once yarn is setup on your computer, run `yarn install`. Now you should be able to run `yarn start` to build the program and run it locally on your machine, however the map will not display. You will need to obtain an API key from [mapbox](https://www.mapbox.com/maps/). Once you get an API key, create a file within the root directory named `.env.local` and write `REACT_APP_MAPBOX_TOKEN={YOUR_API_TOKEN_HERE}`. You should now be able to view a plain map. 
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Setting up the backend
 
-### `npm run build`
+To setup the backend, you will need to setup a [virtual environment](https://docs.python.org/3/tutorial/venv.html). Within the root folder, run `python3 -m venv env`. Activate your virtual envrionment by running `source env/bin/activate` and then `run pip install -r requirements.txt` to retrieve all the modules the backend depends on. 
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Running flask
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+To run flask you will need to run the following command:
+`flask run`
+The backend should be up and running now. 
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Serving the website
 
-### `npm run eject`
+To run the website, you need to run both the frontend server and backend server. When they're both running. Navigate to the frontend server localhost:3000 and you can now see the murals of Amman! 
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Note: This is where I setup the frontend server by default, the backend server can be reached at localhost:5000. 
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)

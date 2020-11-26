@@ -1,0 +1,2 @@
+FLASK_APP=mawaheb
+FLASK_ENV=development
