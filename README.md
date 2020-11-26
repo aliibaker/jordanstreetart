@@ -6,7 +6,7 @@
 <table>
   <tr>
     <td> <img src="/examples/IMG_5155.jpeg"  alt="1" width = 700px height = 640px ></td>
-    <td><img src="/examples/capture2.PNG" alt="2" width=700px ></td>
+    <td><img src="/examples/capture2.PNG" alt="2" width=700px height = 640px ></td>
    </tr> 
 </table>
 
