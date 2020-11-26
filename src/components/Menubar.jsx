@@ -12,7 +12,7 @@ const Menubar = () => {
                className = "d-inline-block align-top"
                alt = "ASA Logo"
                /> {' '}
-          amman street art
+          AMMAN STREET ART
         </Navbar.Brand>
         <Navbar.Collapse className = "justify-content-end">
             <span style={{color: "Tomato"}} onClick = {(e) => {
