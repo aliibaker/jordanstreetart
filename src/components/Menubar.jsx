@@ -17,7 +17,7 @@ const Menubar = () => {
         <Navbar.Collapse className = "justify-content-end">
             <span style={{color: "Tomato"}} onClick = {(e) => {
                             e.preventDefault();
-                            window.open(`https://github.com/bakesbasha/mawaheb`);
+                            window.open(`https://github.com/bakesbasha/ammanstreetart`);
                             }     }>
                 <i className="fab fa-github fa-2x"></i>
             </span>
