@@ -1,4 +1,5 @@
 #!/bin/bash
+# mawahebdb
 
 # Stop on errors
 # See https://vaneyckt.io/posts/safer_bash_scripts_with_set_euxo_pipefail/
@@ -17,25 +18,38 @@ fi
 # Parse argument.  $1 is the first argument
 case $1 in
   "create")
-    FILE=mawaheb/graffiti.sqlite3
+    FILE=mawaheb/streetart.db
     if [ -f "$FILE" ]; then
       echo "Error: database already exists"
     else
-      sqlite3 mawaheb/graffiti.sqlite3 < sql/schema.sql
-      sqlite3 mawaheb/graffiti.sqlite3 < sql/data.sql
+      sqlite3 mawaheb/streetart.db < sql/schema.sql
+      sqlite3 mawaheb/streetart.db < sql/data.sql
+      cp sql/uploads/* public/hd_images/
+      cp sql/uploads/* public/images/
+      for i in public/images/*.jpg; do
+        mogrify -quality 100 -resize 10% $i
+        done
     fi
     ;;
 
   "destroy")
-    rm mawaheb/graffiti.sqlite3
+    rm -rf mawaheb/streetart.db 
+    rm public/images/*
+    rm public/hd_images/*
     ;;
 
   "reset")
-    rm mawaheb/graffiti.sqlite3
-    sqlite3 mawaheb/graffiti.sqlite3 < sql/schema.sql
-    sqlite3 mawaheb/graffiti.sqlite3 < sql/data.sql
+    rm -rf mawaheb/streetart.db
+    rm public/images/*
+    rm public/hd_images/*
+    sqlite3 mawaheb/streetart.db < sql/schema.sql
+    sqlite3 mawaheb/streetart.db < sql/data.sql
+    cp sql/uploads/* public/hd_images/
+    cp sql/uploads/* public/images/
+    for i in public/images/*.jpg; do
+        mogrify -quality 100 -resize 10% $i
+    done
     ;;
-
   *)
     usage
     exit 1

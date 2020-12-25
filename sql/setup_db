@@ -1,6 +1,0 @@
-#!/bin/sh
-j=0
-for i in *.jpg; do 
-    echo "INSERT INTO graffiti(id, filename, artist) VALUES (${j}, '${i}', 'placeholder');" >> data.sql
-    j=$((j+1))
-done

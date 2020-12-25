@@ -10,7 +10,7 @@ from flask_marshmallow import Marshmallow
 # app is a single object used by all the code modules in this package
 app = flask.Flask(__name__, static_folder="../build", static_url_path='/')  # pylint: disable=invalid-name
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///graffiti.db' 
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///streetart.db' 
 app.config['SQLALCHEMY_TRACK_MODIFICATION'] = False
 # Initialize Database
 db = SQLAlchemy(app)
