@@ -59,7 +59,7 @@ const GrafMarker = (props) => {
                 </Marker>
                 <div className = "popup" >
                     {showPopup &&  
-                        <Popup latitude = {data.lat} longitude = {data.lng} offsetLeft = {40} offsetTop = {20} >
+                        <Popup latitude = {data.lat} longitude = {data.lng} offsetLeft = {40} offsetTop = {10} style ={{opacity: 0}}>
                             {grafCollection.length > 1 ? 
                             <Carousel activeIndex = {index} onSelect={handleSelect} indicators ={false} >
                             {grafCollection.map(graf => (
