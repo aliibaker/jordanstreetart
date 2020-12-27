@@ -22,6 +22,10 @@ def index():
 #     db.session.commit()
     
 #     return mawaheb.graffiti_schema.jsonify(new_graffiti)
+@mawaheb.app.route('/api/test', methods=['GET'])
+def get_test():
+    context = {"hello": "world"}
+    return context
 
 @mawaheb.app.route('/api/graffiti', methods=['GET'])
 def get_graffiti():
