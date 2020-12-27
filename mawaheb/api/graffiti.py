@@ -26,26 +26,40 @@ def index():
 @mawaheb.app.route('/api/graffiti', methods=['GET'])
 def get_graffiti():
     all_graffiti = mawaheb.Graffiti.query.all()
-    print(all_graffiti)
     result = mawaheb.graffitis_schema.dump(all_graffiti)
     graffiti_collections = {}
     graffiti_collections = defaultdict(lambda: [], graffiti_collections)
     final_collection = []
     # final_collection = defaultdict(lambda: [], final_collection)
 
+    # artist_test = mawaheb.Artist.query.filter_by(id=2).all()
+    # artist = mawaheb.artists_schema.dump(artist_test)
+
+    # join_test = db.session.query(mawaheb.Credits, mawaheb.Graffiti, mawaheb.Artist).join(mawaheb.Graffiti,).join(mawaheb.Artist).all()
+    # print(join_test)
+
+
     # grouping graffiti near each other together
     for data in result:
         loc = (data['lat'], data['lng'])
+        creds_query = mawaheb.Credits.query.filter_by(graffiti_id=data['id']).all()
+        if len(creds_query) != 0:
+
+            graf_creds = mawaheb.credits_schema.dump(creds_query)
+            for entry in graf_creds:
+                artist_query = mawaheb.Artist.query.filter_by(id=entry['artist_id']).all()
+                artist_info = mawaheb.artists_schema.dump(artist_query)
+                data['artists'] = artist_info
+
+
         graffiti_collections[loc].append(data)
-    print(graffiti_collections)
     for index, key in enumerate(graffiti_collections):
         temp_dict = {}
 
-        print(key)
         temp_dict['collectionid'] = index
         temp_dict['collections'] = graffiti_collections[key]
         final_collection.append(temp_dict)
 
-    print((final_collection))
+    
 
     return jsonify(final_collection)

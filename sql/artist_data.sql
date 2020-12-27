@@ -1,0 +1,2 @@
+INSERT INTO artist(id, name, link) VALUES(0, "Suhaib Attar", "https://www.instagram.com/suhaib_attar/?hl=en");
+INSERT INTO artist(id, name, link) VALUES(1, "Axel", "https://www.instagram.com/sed_ghoush/?hl=en");
