@@ -56,8 +56,9 @@ class ArtistSchema(ma.Schema):
         fields = ('id', 'filename', 'name', 'link')
 
 class Credits(db.Model):
-    graffiti_id = db.Column(db.Integer, db.ForeignKey('graffiti.id'), primary_key=True)
-    artist_id = db.Column(db.Integer, db.ForeignKey('artist.id'), nullable=False)
+    id = db.Column(db.Integer, primary_key=True)
+    graffiti_id = db.Column(db.Integer, db.ForeignKey('graffiti.id'))
+    artist_id = db.Column(db.Integer, db.ForeignKey('artist.id'))
 
     def __init__(self, graffiti_id, artist_id):
         self.graffiti_id = graffiti_id

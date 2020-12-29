@@ -14,7 +14,8 @@ CREATE TABLE artist (
 );
 
 CREATE TABLE credits (
-    graffiti_id INTEGER PRIMARY KEY,
+    id INTEGER PRIMARY KEY,
+    graffiti_id INTEGER,
     artist_id INTEGER,
     FOREIGN KEY(graffiti_id) REFERENCES graffiti(id),
     FOREIGN KEY(artist_id) REFERENCES graffiti(id)
