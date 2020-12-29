@@ -1,9 +1,19 @@
-.map_box_container{
-    position:relative;
-    height: 100% !important;
-    width: 100% !important;
-}  
+
 body{
     font-family: "futura";
     font-weight: "bold";
 }
+
+#menu{
+    position:relative;
+    z-index: 50;
+}
+#map {
+    position:absolute; 
+    top:0; 
+    bottom:0; 
+    width:100%;
+    height:auto
+    }
+  body { margin: 0; padding: 0; }
+  

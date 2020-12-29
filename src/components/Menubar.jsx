@@ -4,7 +4,7 @@ import * as React from 'react'
 
 const Menubar = () => {
     return (
-        <Navbar bg="dark" variant="dark">
+        <Navbar bg="dark" variant="dark" className="custom-menu">
         <Navbar.Brand href="/">
           <img src="ASA_logo_3.png"
                width = "30"

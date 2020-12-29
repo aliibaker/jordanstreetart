@@ -60,7 +60,7 @@ function GrafMap() {
       <MapGL
         {...viewport}
         width="100vw"
-        height="95.8vh"
+        height="100vh"
         mapStyle="mapbox://styles/mapbox/dark-v9"
         onViewportChange={nextViewport => setViewport(nextViewport)}
         mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
