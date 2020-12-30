@@ -37,7 +37,7 @@ function GrafMap() {
     };
     window.addEventListener("mousedown", listener)
 
-    return(()=> {window.removeEventListener(listener)})
+    return(()=> {window.removeEventListener("mousedown", listener)})
   }, [])
   
 
