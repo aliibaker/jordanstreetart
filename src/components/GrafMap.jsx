@@ -12,7 +12,6 @@ import useSupercluster from 'use-supercluster';
 
 function GrafMap() {
   const[data, setData] = useState([]);
-  const[showPopup, setShowPopup] = useState(false);
   const[popupData, setPopupData] = useState(null);
   const[popupIndex, setPopupIndex] = useState(null);
 
@@ -30,6 +29,14 @@ function GrafMap() {
     fetch('/api/graffiti').then(res => res.json()).then(data => {
       setData(data)
     })
+    const listener = e =>{
+      console.log(e.target)
+      if(e.target.classList.contains("overlays")){
+        setPopupData(null);
+        setPopupIndex(null);
+      }
+    };
+    window.addEventListener("mousedown", listener)
   }, [])
   
 

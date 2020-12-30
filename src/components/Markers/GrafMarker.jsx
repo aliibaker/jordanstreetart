@@ -6,7 +6,9 @@ import {Marker, Popup, FlyToInterpolator} from 'react-map-gl';
 
 import './GrafMarker.css'
 
-
+const Image = React.memo(function Image({ src, onClick }){
+    return <img src={src} className="grafImage" onClick={onClick} />;
+});
 
 
 const GrafMarker = ({grafCollection, collectionId, onClick, onGrafDataChange, selected, currentIndex}) =>{
@@ -55,13 +57,12 @@ const GrafMarker = ({grafCollection, collectionId, onClick, onGrafDataChange, se
                     longitude={data.lng} 
                     anchor="bottom"
                     >
-                    <img 
-                        className="grafImage" 
+                    <Image 
                         src={`/images/${data.filename}`} 
                         onClick={() => {
                             onClick()
                             onGrafDataChange(collectionId, index)
-                            }}></img>
+                            }}></Image>
                 </Marker>
                 
             
