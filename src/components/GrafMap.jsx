@@ -30,13 +30,14 @@ function GrafMap() {
       setData(data)
     })
     const listener = e =>{
-      console.log(e.target)
       if(e.target.classList.contains("overlays")){
         setPopupData(null);
         setPopupIndex(null);
       }
     };
     window.addEventListener("mousedown", listener)
+
+    return(()=> {window.removeEventListener(listener)})
   }, [])
   
 
