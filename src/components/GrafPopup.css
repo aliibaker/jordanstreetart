@@ -1,0 +1,7 @@
+.mapboxgl-popup-content {
+    position: relative;
+    padding:0;
+    margin:0;
+    background: none;
+    border:none;
+}

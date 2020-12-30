@@ -2,15 +2,19 @@ import * as React from 'react';
 import { useState, useEffect, useRef} from 'react';
 import './GrafMap.css'
 
-import MapGL, {Marker, FlyToInterpolator} from 'react-map-gl';
+import MapGL, {Marker, FlyToInterpolator, Popup} from 'react-map-gl';
 
 import GrafMarker from './Markers/GrafMarker'
+import GrafPopup from './GrafPopup'
 import useSupercluster from 'use-supercluster';
 
 
 
 function GrafMap() {
   const[data, setData] = useState([]);
+  const[showPopup, setShowPopup] = useState(false);
+  const[popupData, setPopupData] = useState(null);
+  const[popupIndex, setPopupIndex] = useState(null);
 
 
   const[viewport, setViewport] = useState({
@@ -27,6 +31,24 @@ function GrafMap() {
       setData(data)
     })
   }, [])
+  
+
+
+  const onGrafMarkerClick = (latitude, longitude) =>{
+    setViewport({
+      ...viewport,
+      latitude,
+      longitude,
+      zoom: 18,
+      transitionInterpolator: new FlyToInterpolator({ speed: 1}),
+      transitionDuration: 1000
+    })
+  }
+  const onGrafDataChange = (currData, index) =>{
+    setPopupData(currData)
+    setPopupIndex(index)
+
+  }
 
   //creating clusters
   const points = data.map(graf => ({
@@ -51,7 +73,26 @@ function GrafMap() {
     options: {radius: 46, maxZoom: 20}
   })
 
-  console.log('clusters', clusters)
+
+
+  useEffect(() =>{
+    let found = false
+    if(popupData !== null){
+      clusters.forEach(cluster =>{
+        if(cluster.properties.collectionId === popupData){
+          found = true
+        }
+      })
+      if(!found)
+      {
+        setPopupData(null)
+        setPopupIndex(null)
+      }
+      
+    }
+
+  }, [clusters])
+
 
 
 
@@ -64,6 +105,7 @@ function GrafMap() {
         mapStyle="mapbox://styles/mapbox/dark-v9"
         onViewportChange={nextViewport => setViewport(nextViewport)}
         mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
+        transitionDUration={1000}
         ref = {mapRef}
       >
         {clusters && clusters.map(cluster => {
@@ -98,24 +140,28 @@ function GrafMap() {
           }
           //else return a GrafMarker
           return(
+  
             <div>
               <GrafMarker grafCollection={cluster.properties.collection} 
                           key={cluster.properties.collectionId}
                           onClick={() => {
-                            setViewport({
-                              ...viewport,
-                              latitude,
-                              longitude,
-                              zoom: 18,
-                              transitionInterpolator: new FlyToInterpolator({ speed: 1}),
-                              transitionDuration: "auto"
-                            })
+                            onGrafMarkerClick(latitude, longitude)
                           }}  
+                          onGrafDataChange={onGrafDataChange}
+                          collectionId={cluster.properties.collectionId}
+                          selected={cluster.properties.collectionId===popupData}
+                          currentIndex={popupIndex}
               /> 
             </div>
-            
+     
           )
         })}
+        {popupData !== null && 
+          <GrafPopup data={data[popupData]} index={popupIndex} onGrafDataChange={onGrafDataChange}>
+
+          </GrafPopup>
+        
+        }
       </MapGL>
 
     </div>
