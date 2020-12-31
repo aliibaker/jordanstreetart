@@ -47,7 +47,7 @@ function GrafMap() {
       ...viewport,
       latitude,
       longitude,
-      zoom: 18,
+      zoom: 20,
       transitionInterpolator: new FlyToInterpolator({ speed: 1}),
       transitionDuration: 1000
     })
