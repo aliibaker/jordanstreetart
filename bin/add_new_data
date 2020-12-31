@@ -1,0 +1,13 @@
+#!/bin/bash
+
+num_files=$(ls sql/uploads | wc -l | xargs)
+
+
+for i in sql/new_graf/*; do
+	mv "$i" "sql/new_graf/graf_${num_files}.jpg"
+	echo "INSERT INTO graffiti(id, filename,  lat, lng) VALUES (${num_files}, 'graf_${num_files}.jpg', 31, 35);" >> sql/data.sql 
+        echo "added graf_${num_files}.jpg"
+	num_files=$((num_files+1))    
+done  
+
+mv sql/new_graf/* sql/uploads/
