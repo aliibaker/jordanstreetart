@@ -1,2 +1,23 @@
 INSERT INTO credits(id, graffiti_id, artist_id) VALUES(0, 24, 0); 
-
+INSERT INTO credits(id, graffiti_id, artist_id) VALUES(1, 80, 0); 
+INSERT INTO credits(id, graffiti_id, artist_id) VALUES(2, 26, 0); 
+INSERT INTO credits(id, graffiti_id, artist_id) VALUES(3, 89, 4);  
+INSERT INTO credits(id, graffiti_id, artist_id) VALUES(5, 39, 9);
+INSERT INTO credits(id, graffiti_id, artist_id) VALUES(6, 40, 9); 
+INSERT INTO credits(id, graffiti_id, artist_id) VALUES(7, 25, 4);  
+INSERT INTO credits(id, graffiti_id, artist_id) VALUES(8, 46, 10); 
+INSERT INTO credits(id, graffiti_id, artist_id) VALUES(9, 28, 1);   
+INSERT INTO credits(id, graffiti_id, artist_id) VALUES(10, 30, 11);   
+INSERT INTO credits(id, graffiti_id, artist_id) VALUES(11, 19, 2); 
+INSERT INTO credits(id, graffiti_id, artist_id) VALUES(12, 69, 0); 
+INSERT INTO credits(id, graffiti_id, artist_id) VALUES(13, 68, 2);
+INSERT INTO credits(id, graffiti_id, artist_id) VALUES(14, 70, 0); 
+INSERT INTO credits(id, graffiti_id, artist_id) VALUES(15, 58, 8);  
+INSERT INTO credits(id, graffiti_id, artist_id) VALUES(16, 54, 11); 
+INSERT INTO credits(id, graffiti_id, artist_id) VALUES(17, 29, 13); 
+INSERT INTO credits(id, graffiti_id, artist_id) VALUES(18, 51, 1); 
+INSERT INTO credits(id, graffiti_id, artist_id) VALUES(19, 51, 6); 
+INSERT INTO credits(id, graffiti_id, artist_id) VALUES(20, 50, 12); 
+INSERT INTO credits(id, graffiti_id, artist_id) VALUES(21, 105, 14); 
+INSERT INTO credits(id, graffiti_id, artist_id) VALUES(22, 105, 15);
+INSERT INTO credits(id, graffiti_id, artist_id) VALUES(23, 3, 14); 

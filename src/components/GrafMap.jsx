@@ -7,6 +7,7 @@ import MapGL, {Marker, FlyToInterpolator, Popup} from 'react-map-gl';
 import GrafMarker from './Markers/GrafMarker'
 import GrafPopup from './GrafPopup'
 import useSupercluster from 'use-supercluster';
+import ArtistProfile from './ArtistProfile';
 
 
 
@@ -105,6 +106,7 @@ function GrafMap() {
 
 
   return (
+    <>
     <div id = "map">
       <MapGL
         {...viewport}
@@ -114,6 +116,7 @@ function GrafMap() {
         onViewportChange={nextViewport => setViewport(nextViewport)}
         mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
         transitionDUration={1000}
+        minZoom={10}
         ref = {mapRef}
       >
         {clusters && clusters.map(cluster => {
@@ -170,9 +173,12 @@ function GrafMap() {
           </GrafPopup>
         
         }
+        
       </MapGL>
 
     </div>
+    </>
+      
 
 
     

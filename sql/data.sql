@@ -103,4 +103,4 @@ INSERT INTO graffiti(id, filename,  lat, lng) VALUES (101, 'graf_101.jpg', 31.95
 INSERT INTO graffiti(id, filename,  lat, lng) VALUES (102, 'graf_102.jpg', 31.9547825, 35.9295027);
 INSERT INTO graffiti(id, filename,  lat, lng) VALUES (103, 'graf_103.jpg', 31.9547825, 35.9295027);
 INSERT INTO graffiti(id, filename,  lat, lng) VALUES (104, 'graf_104.jpg', 31.9547825, 35.9295027);
-INSERT INTO graffiti(id, filename,  lat, lng) VALUES (105, 'graf_105.jpg', 31.9547825, 35.9295027);
+INSERT INTO graffiti(id, filename,  lat, lng) VALUES (105, 'graf_105.jpg', 31.9545210, 35.9153930);
