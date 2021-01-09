@@ -65,7 +65,7 @@ const GrafPopup = ({data, index, onGrafDataChange}) =>{
                             </Carousel.Item>
                             
                         ))}
-                    </Carousel>:<> {loading && <Spinner animation="border" className="d-flex justify-content-center"></Spinner> }<Card.Img src={`/hd_images/${data.collections[index].filename}`} onLoad={()=> setLoading(false)}></Card.Img> </>}
+                    </Carousel>:<> {loading && <Spinner animation="border" className="d-flex justify-content-center"></Spinner> }<Card.Img style={{display: loading ? "none" : "block"}}src={`/hd_images/${data.collections[index].filename}`} onLoad={()=> setLoading(false)}></Card.Img> </>}
                 
             <Card.Body className="googlemap-button">
               
