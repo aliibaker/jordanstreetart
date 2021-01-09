@@ -4,18 +4,21 @@ import {Popup} from 'react-map-gl'
 import Card from 'react-bootstrap/Card'
 import Carousel from 'react-bootstrap/Carousel'
 import Button from 'react-bootstrap/Button'
-import ListGroup from 'react-bootstrap/ListGroup'
-
+import Spinner from 'react-bootstrap/Spinner'
 import './GrafPopup.css'
+
+
 
 const GrafPopup = ({data, index, onGrafDataChange}) =>{
     const {lat, lng} = data.collections[index];
     const [activeIndex, setIndex] = useState(index);
+    const [loading, setLoading] = useState(true);
 
 
     const handleSelect = (selectedIndex, e) =>{
         setIndex(selectedIndex);
         onGrafDataChange(data.collectionid, selectedIndex);
+        setLoading(false)
     }
 
     const renderArtists = () =>{
@@ -57,11 +60,12 @@ const GrafPopup = ({data, index, onGrafDataChange}) =>{
                 
                         {data.collections.map(graf =>(
                             <Carousel.Item key={graf.id}>
-                                <Card.Img src={`/hd_images/${graf.filename}`}></Card.Img>
+                                    {loading && <Spinner animation="border" className="d-flex justify-content-center"></Spinner>}
+                                    <Card.Img src={`/hd_images/${graf.filename}`} onLoad={()=> setLoading(false)}></Card.Img>
                             </Carousel.Item>
                             
                         ))}
-                    </Carousel>: <Card.Img src={`/hd_images/${data.collections[index].filename}`}></Card.Img> }
+                    </Carousel>:<> {loading && <Spinner animation="border" className="d-flex justify-content-center"></Spinner> }<Card.Img src={`/hd_images/${data.collections[index].filename}`} onLoad={()=> setLoading(false)}></Card.Img> </>}
                 
             <Card.Body className="googlemap-button">
               
