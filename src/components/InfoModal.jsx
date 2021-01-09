@@ -1,12 +1,13 @@
 import Modal from 'react-bootstrap/Modal'
-
+import Button from 'react-bootstrap/Button'
 import * as React from 'react'
 
 
-const GrafModal = ({grafData}) => {
+const InfoModal = ({grafData, show, onHide}) => {
     return(<>
         <Modal
-      {...props}
+      show={show}
+      onHide={onHide}
       size="lg"
       aria-labelledby="contained-modal-title-vcenter"
       centered
@@ -25,10 +26,10 @@ const GrafModal = ({grafData}) => {
         </p>
       </Modal.Body>
       <Modal.Footer>
-        <Button onClick={props.onHide}>Close</Button>
+        <Button onClick={onHide}>Close</Button>
       </Modal.Footer>
     </Modal>
     </>)
 }
 
-export default GrafModal;
+export default InfoModal;

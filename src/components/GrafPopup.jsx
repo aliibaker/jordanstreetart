@@ -9,7 +9,7 @@ import './GrafPopup.css'
 
 
 
-const GrafPopup = ({data, index, onGrafDataChange}) =>{
+const GrafPopup = ({data, index, onGrafDataChange, launchInfoModal}) =>{
     const {lat, lng} = data.collections[index];
     const [activeIndex, setIndex] = useState(index);
     const [loading, setLoading] = useState(true);
@@ -47,10 +47,6 @@ const GrafPopup = ({data, index, onGrafDataChange}) =>{
         return(<Card.Text>Artists:</Card.Text>)
     }
 
-    
-
-
-
     return(
         <Popup latitude={lat} longitude={lng} offsetLeft = {40} offsetTop = {10} style ={{opacity: 0}}>
           
@@ -61,7 +57,7 @@ const GrafPopup = ({data, index, onGrafDataChange}) =>{
                         {data.collections.map(graf =>(
                             <Carousel.Item key={graf.id}>
                                     {loading && <Spinner animation="border" className="d-flex justify-content-center"></Spinner>}
-                                    <Card.Img src={`/hd_images/${graf.filename}`} onLoad={()=> setLoading(false)}></Card.Img>
+                                    <Card.Img style={{display: loading ? "none" : "block"}} src={`/hd_images/${graf.filename}`} onLoad={()=> setLoading(false)}></Card.Img>
                             </Carousel.Item>
                             
                         ))}
@@ -75,7 +71,7 @@ const GrafPopup = ({data, index, onGrafDataChange}) =>{
             <hr style={{height: "2px", margin:"0px"}}></hr>
             <Card.Body className="moreinfo-button d-flex justify-content-center">
                 <Button className= "mr-auto p-2" variant="outline-success" href={`https://www.google.com/maps/search/?api=1&query=${lat},${lng}`}target='_blank'><i class="fa fa-map-marker" aria-hidden="true"></i> Location</Button>
-                <Button className= "" variant="outline-info">More Info</Button>
+                <Button variant="outline-info" onClick={launchInfoModal}>More Info</Button>
             </Card.Body>
             
 

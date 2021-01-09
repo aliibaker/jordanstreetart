@@ -7,6 +7,7 @@ import MapGL, {Marker, FlyToInterpolator, Popup} from 'react-map-gl';
 import GrafMarker from './Markers/GrafMarker'
 import GrafPopup from './GrafPopup'
 import useSupercluster from 'use-supercluster';
+import InfoModal from './InfoModal';
 import ArtistProfile from './ArtistProfile';
 
 
@@ -15,6 +16,7 @@ function GrafMap() {
   const[data, setData] = useState([]);
   const[popupData, setPopupData] = useState(null);
   const[popupIndex, setPopupIndex] = useState(null);
+  const[showInfo, setShowInfo] = useState(false);
 
 
   const[viewport, setViewport] = useState({
@@ -168,11 +170,14 @@ function GrafMap() {
           )
         })}
         {popupData !== null && 
-          <GrafPopup data={data[popupData]} index={popupIndex} onGrafDataChange={onGrafDataChange}>
+          <GrafPopup data={data[popupData]} index={popupIndex} onGrafDataChange={onGrafDataChange} launchInfoModal={()=>{setShowInfo(true); ; onGrafDataChange(null,null)}}>
 
           </GrafPopup>
         
         }
+
+        {showInfo !== null && 
+           <InfoModal grafData={popupData} show={showInfo} onHide={()=>{setShowInfo(false)}}/>}
         
       </MapGL>
 
