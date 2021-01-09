@@ -5,9 +5,14 @@ import Carousel from 'react-bootstrap/Carousel'
 import {Marker, Popup, FlyToInterpolator} from 'react-map-gl';
 
 import './GrafMarker.css'
+import {LazyLoadImage} from 'react-lazy-load-image-component'
 
 const Image = React.memo(function Image({ src, onClick }){
-    return <img src={src} className="grafImage" onClick={onClick} />;
+    return <LazyLoadImage
+     src={src}
+     className="grafImage"
+     onClick={onClick}>
+        </LazyLoadImage>;
 });
 
 
