@@ -54,7 +54,7 @@ const GrafPopup = ({data, index, onGrafDataChange}) =>{
     return(
         <Popup latitude={lat} longitude={lng} offsetLeft = {40} offsetTop = {10} style ={{opacity: 0}}>
           
-            <Card style={{ width: '14.5rem' }}>
+            <Card style={{ width: '13.5rem' }}>
                 {data.collections.length > 1 ?
                     <Carousel activeIndex={activeIndex} onSelect={handleSelect} indicators={false}> 
                 
