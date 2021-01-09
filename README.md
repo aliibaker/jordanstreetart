@@ -1,6 +1,6 @@
-# Amman Street Art
+# Jordan Street Art
 
-[Amman Street Art](https://www.ammanstreetart.com) is an open source web application which displays the graffiti and murals of Amman on a virtual map. 
+[Jordan Street Art](https://www.ammanstreetart.com) is an open source web application which displays the graffiti and murals of Jordan on a virtual map. 
 ![amman street art](/examples/ASA_logo_1.png)
 
 <table>
