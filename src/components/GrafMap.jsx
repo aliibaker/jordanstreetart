@@ -18,9 +18,9 @@ function GrafMap() {
 
 
   const[viewport, setViewport] = useState({
-      latitude: 31.963158,
+      latitude: 31.963198,
       longitude: 35.930359,
-      zoom: 12
+      zoom: 10
     });
   
   //sets map reference 
