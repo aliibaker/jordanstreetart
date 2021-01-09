@@ -112,7 +112,7 @@ function GrafMap() {
         {...viewport}
         width="100vw"
         height="100vh"
-        mapStyle="mapbox://styles/mapbox/dark-v9"
+        mapStyle="mapbox://styles/aliibakes/ckjpw30p454tr19qsdypr1vyq"
         onViewportChange={nextViewport => setViewport(nextViewport)}
         mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
         transitionDUration={1000}

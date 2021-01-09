@@ -26,7 +26,7 @@
     background-color: none;
     border: double 2px transparent;
     border-radius: 80px;
-    background-image: radial-gradient(rgb(231, 125, 63),#632204);
+    background-image: radial-gradient(#800020 ,#800020);
     background-origin: border-box;
     background-clip: content-box, border-box;
     padding: 10px;
@@ -55,5 +55,5 @@
 .right{
   width:30%;
   right:0;
-  background-color: rgb(56, 48, 48);
+  background-color: rgb(43, 38, 38);
 }
