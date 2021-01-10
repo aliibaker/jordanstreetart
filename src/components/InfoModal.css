@@ -3,6 +3,8 @@
     max-height:100%;
 }
 .modal-dialog{
+    max-width: 450px;
+    
     
 }
 .infomodal-body{
