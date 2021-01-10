@@ -1,7 +1,6 @@
 .infomodal img{
     max-width:100%;
-    max-height: 700px;
-    width: auto;
+    height: auto;
     
     
 }
@@ -10,7 +9,6 @@
 }
 .infomodal-body{
     padding:0px;
-    max-height:700px;
     
 }
 .modal-header{
