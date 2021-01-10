@@ -27,3 +27,4 @@ INSERT INTO credits(id, graffiti_id, artist_id) VALUES(26, 82, 13);
 INSERT INTO credits(id, graffiti_id, artist_id) VALUES(27, 91, 11); 
 INSERT INTO credits(id, graffiti_id, artist_id) VALUES(28, 100, 13); 
 INSERT INTO credits(id, graffiti_id, artist_id) VALUES(29, 98, 13); 
+INSERT INTO credits(id, graffiti_id, artist_id) VALUES(30, 113, 2); 
