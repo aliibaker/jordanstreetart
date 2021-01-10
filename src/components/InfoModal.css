@@ -1,5 +1,8 @@
 .infomodal img{
     max-width:100%;
+    max-height: 80%;
+    height: auto;
+    width: auto;
     
 }
 .modal-dialog{
@@ -10,7 +13,6 @@
 }
 .infomodal-body{
     padding:0px;
-    max-height: 80vh;
     
 }
 .modal-header{
