@@ -1,16 +1,17 @@
-.infomodal img{
+.infomodal-body{
+    padding:0px;
+    
+}
+.infomodal-body img{
     max-width:100%;
-    max-height: 100%;
+    max-height:100%;
     
     
 }
 .modal-dialog{
     max-width: 450px;
 }
-.infomodal-body{
-    padding:0px;
-    
-}
+
 .modal-header{
     padding:5px;
 }
@@ -23,9 +24,23 @@
 }
 
 .other-works img{
-    width:75;
+    width:75px;
     height:75px;
     border-radius: 50%;
     margin:2px
 
+}
+
+@media only screen and (max-device-width: 480px) {
+    .infomodal-body{
+        padding:0px;
+        height:400px;
+        
+    }
+    .infomodal-body img{
+        max-width:100%;
+        max-height:100%;
+        height: 400px;
+        
+    }
 }
