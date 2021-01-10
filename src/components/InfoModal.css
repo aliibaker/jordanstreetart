@@ -1,6 +1,6 @@
 .infomodal img{
     max-width:100%;
-    height: auto;
+    max-height: 100%;
     
     
 }
@@ -23,8 +23,9 @@
 }
 
 .other-works img{
-    width:100px;
-    height:100px;
+    width:75;
+    height:75px;
     border-radius: 50%;
+    margin:2px
 
 }
