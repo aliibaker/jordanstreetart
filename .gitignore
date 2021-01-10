@@ -15,6 +15,7 @@ env
 # misc
 mawahebdeploy.pem
 mawahebeu.pem
+streetartprojectkey.pem
 .DS_Store
 .env.local
 .env.development.local
