@@ -1,18 +1,16 @@
 .infomodal img{
     max-width:100%;
-    max-height: 80%;
-    height: auto;
+    height: 400px;
     width: auto;
+    
     
 }
 .modal-dialog{
     max-width: 450px;
-    
-    
-    
 }
 .infomodal-body{
     padding:0px;
+    height:400px;
     
 }
 .modal-header{
