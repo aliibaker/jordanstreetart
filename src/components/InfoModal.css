@@ -35,11 +35,13 @@
     .infomodal-body{
         padding:0px;
         max-height:600px;
+        height:auto;
         
     }
     .infomodal-body img{
         max-width:100%;
         max-height: 600px;
+        height:auto;
         
     }
 }
