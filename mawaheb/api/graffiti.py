@@ -30,9 +30,6 @@ def get_graffiti():
     graffiti_collections = {}
     graffiti_collections = defaultdict(lambda: [], graffiti_collections)
     final_collection = []
-    creds_query = mawaheb.Credits.query.filter_by(graffiti_id=24).all()
-    creds_results = mawaheb.credits_schema.dump(creds_query)
-    print(creds_results)
 
     
 
@@ -78,3 +75,10 @@ def get_graffiti():
     
 
     return jsonify(final_collection)
+
+@mawaheb.app.route('/api/graffiti_query')
+def get_graffiti_data():
+    graffiti_id = request.args.get('graffiti_id')
+    graffiti_query = mawaheb.Graffiti.query.filter_by(id=graffiti_id)
+    graffiti_results = mawaheb.graffitis_schema.dump(graffiti_query)
+    return jsonify(graffiti_results)

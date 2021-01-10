@@ -12,6 +12,7 @@
     "react": "^17.0.1",
     "react-bootstrap": "^1.4.0",
     "react-dom": "^17.0.1",
+    "react-lazy-load-image-component": "^1.5.1",
     "react-map-gl": "^5.2.9",
     "react-scripts": "4.0.0",
     "react-touch-events": "^3.0.0",

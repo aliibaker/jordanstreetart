@@ -48,8 +48,6 @@ const GrafMarker = ({grafCollection, collectionId, onClick, onGrafDataChange, se
         }
 
         setData(grafCollection[currentIndex])
-        
-
 
     })
 

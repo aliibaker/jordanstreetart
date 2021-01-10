@@ -52,7 +52,7 @@ const GrafPopup = ({data, index, onGrafDataChange, launchInfoModal}) =>{
           
             <Card style={{ width: '13.5rem' }}>
                 {data.collections.length > 1 ?
-                    <Carousel activeIndex={activeIndex} onSelect={handleSelect} indicators={false}> 
+                    <Carousel activeIndex={activeIndex} onSelect={handleSelect} indicators={false} interval={null}> 
                 
                         {data.collections.map(graf =>(
                             <Carousel.Item key={graf.id}>

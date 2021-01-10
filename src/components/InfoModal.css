@@ -1,0 +1,28 @@
+.infomodal img{
+    max-width:100%;
+    max-height:50%;
+}
+.modal-dialog{
+    max-width: 450px;
+}
+.infomodal-body{
+    padding:0px;
+    
+}
+.modal-header{
+    padding:5px;
+}
+
+
+.id-box{
+    background-color: black;
+    border-radius: 5px;
+    color:white;
+}
+
+.other-works img{
+    width:100px;
+    height:100px;
+    border-radius: 50%;
+
+}

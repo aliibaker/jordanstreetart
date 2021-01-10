@@ -44,6 +44,10 @@ function GrafMap() {
   }, [])
   
 
+  const getGrafData = (collectionId, cIndex) =>{
+    return data[collectionId].collections[cIndex]
+  }
+
 
   const onGrafMarkerClick = (latitude, longitude) =>{
     setViewport({
@@ -170,14 +174,20 @@ function GrafMap() {
           )
         })}
         {popupData !== null && 
-          <GrafPopup data={data[popupData]} index={popupIndex} onGrafDataChange={onGrafDataChange} launchInfoModal={()=>{setShowInfo(true); ; onGrafDataChange(null,null)}}>
+          <GrafPopup data={data[popupData]} index={popupIndex} onGrafDataChange={onGrafDataChange} launchInfoModal={()=>{setShowInfo(true);  }}>
 
           </GrafPopup>
         
         }
 
-        {showInfo !== null && 
-           <InfoModal grafData={popupData} show={showInfo} onHide={()=>{setShowInfo(false)}}/>}
+        {(showInfo !== null) && (popupData !== null) &&
+           <InfoModal 
+              grafData={data[popupData].collections[popupIndex]} 
+              show={showInfo} 
+              collectionId={popupData}
+              index={popupIndex}
+              getGrafData={getGrafData} 
+              onHide={()=>{setShowInfo(false); onGrafDataChange(null,null)}}/>}
         
       </MapGL>
 
