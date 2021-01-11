@@ -17,6 +17,7 @@ function GrafMap() {
   const[popupData, setPopupData] = useState(null);
   const[popupIndex, setPopupIndex] = useState(null);
   const[showInfo, setShowInfo] = useState(false);
+  const[transitioning, setTransitioning] = useState(false)
 
 
   const[viewport, setViewport] = useState({
@@ -57,13 +58,16 @@ function GrafMap() {
       zoom: 20,
       transitionInterpolator: new FlyToInterpolator({ speed: 1}),
       transitionDuration: 1000
-    })
+    });
+    setTransitioning(true);
+    setTimeout(()=>{setTransitioning(false)},1200);
+    setShowInfo(false);
   }
   const onGrafDataChange = (currData, index) =>{
     setPopupData(currData)
     setPopupIndex(index)
 
-  }
+  };
 
   //creating clusters
   const points = data.map(graf => ({
@@ -92,19 +96,20 @@ function GrafMap() {
 
   useEffect(() =>{
     let found = false
-    if(popupData !== null){
-      clusters.forEach(cluster =>{
-        if(cluster.properties.collectionId === popupData){
-          found = true
+    if(!transitioning)
+      if(popupData !== null){
+        clusters.forEach(cluster =>{
+          if(cluster.properties.collectionId === popupData){
+            found = true
+          }
+        })
+        if(!found)
+        {
+          setPopupData(null)
+          setPopupIndex(null)
         }
-      })
-      if(!found)
-      {
-        setPopupData(null)
-        setPopupIndex(null)
+        
       }
-      
-    }
 
   }, [clusters])
 
@@ -185,9 +190,13 @@ function GrafMap() {
               grafData={data[popupData].collections[popupIndex]} 
               show={showInfo} 
               collectionId={popupData}
-              index={popupIndex}
-              getGrafData={getGrafData} 
-              onHide={()=>{setShowInfo(false); onGrafDataChange(null,null)}}/>}
+              index={popupIndex} 
+              onHide={()=>{setShowInfo(false); onGrafDataChange(null,null)}}
+              onGrafMarkerClick={onGrafMarkerClick}
+              onGrafDataChange={onGrafDataChange}
+              />
+              }
+              
         
       </MapGL>
 

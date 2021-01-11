@@ -5,10 +5,70 @@ import {useState, useEffect} from 'react'
 
 import './InfoModal.css'
 
-const InfoModal = ({grafData, collectionId, index, show, onHide, getGrafData}) => {
-    console.log(grafData)
-    const [artistWork, setArtistWork] = useState(null)
+const InfoModal = ({grafData, collectionId, index, show, onHide, onGrafMarkerClick, onGrafDataChange}) => {
+    const [artistWork, setArtistWork] = useState([])
+    const [loaded, setLoaded] = useState(false)
 
+
+    const renderArtists = () =>{
+      if(grafData.artists !== undefined){
+        if(grafData.artists.length > 1){
+          const artistData = grafData.artists.map(dt =>(
+            <span><Button variant="link" href={`${dt.link}`} target="_blank">{dt.name}</Button></span>
+          ))
+
+          return(<h5>Artists: {artistData}</h5>)
+        }
+      return <h5>Artist: <Button variant="link" href={`${grafData.artists[0].link}`} target="_blank">{grafData.artists[0].name}</Button></h5>
+      }
+
+      return <h5>Artist: Unknown</h5>
+    }
+
+    const renderArtistWork = () =>{
+      if(grafData.artists !== undefined){
+        if(grafData.artists.length > 1){
+          // let artistJsx = []
+          // grafData.artists.forEach((artist,index)=>{
+          //   if(artistWork[index] !== undefined){
+          //     artistJsx.push(<>
+          //         <h6>{artist.name}'s work</h6>
+          //         <div className="other-works">
+          //           {artistWork[index].map(art=>{
+          //               <img 
+          //               src={`/hd_images/${art.filename}`} 
+          //               onClick={()=> {onGrafMarkerClick(art.lat, art.lng); setArtistWork([]); onGrafDataChange(art.collectionid, art.collection_index)}} 
+          //               alt={art.id}></img>
+          //           })}
+          //         </div>
+          //         </>)
+          //   }
+          //   else{
+          //     artistJsx.push(
+          //       <h6>Other work for {artist.name} not found on website</h6>
+          //     )
+          //   }
+
+
+          // })
+
+    
+          //for now until i reconfigure the fetching system
+          return null;
+          
+        }
+        console.log(artistWork)
+        return(<><h6>Other Works:</h6><div className="other-works">
+              {artistWork[0] && artistWork[0].map((art)=>(
+                <img 
+                  src={`/hd_images/${art.filename}`} 
+                  onClick={()=> {onGrafMarkerClick(art.lat, art.lng); setArtistWork([]); onGrafDataChange(art.collectionid, art.collection_index)}} 
+                  alt={art.id}></img>
+              ))}
+      </div></>)
+      }
+      return null;
+    }
 
     const randomizeArtistWork = (data)=>{
       //not really random but will work on this later
@@ -17,9 +77,7 @@ const InfoModal = ({grafData, collectionId, index, show, onHide, getGrafData}) =
 
     const processArtworkData = (data)=>{
       let dataArray = []
-      console.log(data)
       data.forEach(dt =>{
-        console.log(dt.graffiti_id);
         if(dt.graffiti_id !== grafData.id){
           fetch(`/api/graffiti_query?graffiti_id=${dt.graffiti_id}`).then(res=>res.json()).then(newData=>{
             dataArray.push(newData[0]);
@@ -27,22 +85,23 @@ const InfoModal = ({grafData, collectionId, index, show, onHide, getGrafData}) =
         }
 
       })
+      console.log(dataArray)
       return dataArray;
     }
     useEffect(() =>{
       if(grafData.artists !== undefined){
-        fetch(`/api/creds?artist_id=${grafData.artists[0].id}`).then(res => res.json()).then(data => {
-          setArtistWork(processArtworkData(data))
+        grafData.artists.forEach(artist=>{
+          fetch(`/api/creds?artist_id=${artist.id}`).then(res => res.json()).then(data => {
+            setArtistWork([...artistWork, processArtworkData(data)])
+          })
         })
       }
 
-    }, [])
+    },[grafData.artists])
 
-
-    console.log(artistWork)
     return(<>
         <Modal
-      className="infomodal"
+      
       show={show}
       onHide={onHide}
       size="lg"
@@ -57,17 +116,13 @@ const InfoModal = ({grafData, collectionId, index, show, onHide, getGrafData}) =
       </Modal.Header>
       <Modal.Body className ="infomodal-body">
         <div className="d-flex justify-content-center">
-          <img src={`/hd_images/${grafData.filename}`} />
+          <img src={`/hd_images/${grafData.filename}`} onLoad={()=>setLoaded}/>
         </div>
       </Modal.Body>
+      
       <Modal.Body>
-        <h5>By: {grafData.artists && grafData.artists[0].name}</h5>
-        <h5>Other works:</h5>
-        <div className="other-works">
-          {artistWork && artistWork.map((art)=>(
-            <img src={`/hd_images/${art.filename}`}></img>
-          ))}
-        </div>
+        {renderArtists()}
+        {renderArtistWork()}
 
        
       </Modal.Body>

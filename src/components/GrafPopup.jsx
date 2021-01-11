@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
 import {Popup} from 'react-map-gl'
 import Card from 'react-bootstrap/Card'
 import Carousel from 'react-bootstrap/Carousel'
@@ -13,7 +13,10 @@ const GrafPopup = ({data, index, onGrafDataChange, launchInfoModal}) =>{
     const {lat, lng} = data.collections[index];
     const [activeIndex, setIndex] = useState(index);
     const [loading, setLoading] = useState(true);
-
+    
+    useEffect(()=>{
+        setIndex(index)
+    }, [])
 
     const handleSelect = (selectedIndex, e) =>{
         setIndex(selectedIndex);
@@ -27,7 +30,6 @@ const GrafPopup = ({data, index, onGrafDataChange, launchInfoModal}) =>{
         }
         else{
             if(data.collections[index].artists.length > 1){
-                console.log(data.collections[index].artists)
                 return(<Card.Text className="artist-text"><span>Artists: </span>
                         {data.collections[index].artists.map((artist, index) => (
                             <Card.Link className="" href={`${artist.link}`} target="_blank" >{artist.name}</Card.Link>
