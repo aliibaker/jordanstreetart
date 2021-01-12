@@ -66,7 +66,7 @@ const GrafMarker = ({grafCollection, collectionId, onClick, onGrafDataChange, se
                         src={`/images/${data.filename}`} 
                         onClick={() => {
                             onClick()
-                            onGrafDataChange(collectionId, index)
+                            onGrafDataChange(collectionId, ind)
                             }}></Image>
                 </Marker>
                 

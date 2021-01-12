@@ -167,7 +167,7 @@ function GrafMap() {
               <GrafMarker grafCollection={cluster.properties.collection} 
                           key={cluster.properties.collectionId}
                           onClick={() => {
-                            onGrafMarkerClick(latitude, longitude)
+                            onGrafMarkerClick(latitude, longitude);
                           }}  
                           onGrafDataChange={onGrafDataChange}
                           collectionId={cluster.properties.collectionId}
@@ -194,7 +194,7 @@ function GrafMap() {
               onHide={()=>{setShowInfo(false); onGrafDataChange(null,null)}}
               onGrafMarkerClick={onGrafMarkerClick}
               onGrafDataChange={onGrafDataChange}
-              openInfo={()=> {setShowInfo(true);}}
+              openInfo = {()=> setTimeout(()=>setShowInfo(true), 700)}
               
               />
               }

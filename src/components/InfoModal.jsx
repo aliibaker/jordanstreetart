@@ -9,7 +9,11 @@ import axios from 'axios'
 
 
 const InfoModal = ({grafData, collectionId, index, show, onHide, onGrafMarkerClick, onGrafDataChange, openInfo}) => {
-    const [artistWork, setArtistWork] = useState([...Array(grafData.artists.length)].map(e => Array(0)))
+    let arraySize = 0;
+    if(grafData.artists !== undefined){
+      arraySize = grafData.artists.length;
+    }
+    const [artistWork, setArtistWork] = useState([...Array(arraySize)].map(e => Array(0)))
     const [loaded, setLoaded] = useState(false)
 
 
@@ -43,7 +47,11 @@ const InfoModal = ({grafData, collectionId, index, show, onHide, onGrafMarkerCli
                         if(art !== null){
                           return(<img 
                             src={`/hd_images/${art.data[0].filename}`} 
-                            onClick={()=> {onGrafMarkerClick(art.data[0].lat, art.data[0].lng); setArtistWork([]);  onGrafDataChange(art.data[0].collectionid, art.data[0].collection_index); openInfo(true);}} 
+                            onClick={()=> {
+                              onGrafMarkerClick(art.data[0].lat, art.data[0].lng); 
+                              setArtistWork([]);  
+                              setTimeout(()=>{onGrafDataChange(art.data[0].collectionid, art.data[0].collection_index); console.log('yes')}, 5000); 
+                             openInfo()}} 
                             alt={art.data[0].id}></img>)
                         }
                         else{
@@ -73,8 +81,16 @@ const InfoModal = ({grafData, collectionId, index, show, onHide, onGrafMarkerCli
                   return(
                     <img 
                       src={`/hd_images/${art.data[0].filename}`} 
-                      onClick={()=> {onGrafMarkerClick(art.data[0].lat, art.data[0].lng); setArtistWork([]); onGrafDataChange(art.data[0].collectionid, art.data[0].collection_index)}} 
-                      alt={art.data[0].id}></img>
+                      onClick={()=> {
+                              onGrafMarkerClick(art.data[0].lat, art.data[0].lng); 
+                              setArtistWork([]); 
+                              onGrafDataChange(art.data[0].collectionid, art.data[0].collection_index);
+                              openInfo();
+                               }} 
+                      alt={art.data[0].id}
+                      >
+                        
+                      </img>
                     )
                 }
                 return null;

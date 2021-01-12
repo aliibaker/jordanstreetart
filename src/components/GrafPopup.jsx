@@ -11,15 +11,19 @@ import './GrafPopup.css'
 
 const GrafPopup = ({data, index, onGrafDataChange, launchInfoModal}) =>{
     const {lat, lng} = data.collections[index];
+    let test = index
     const [activeIndex, setIndex] = useState(index);
+    console.log(activeIndex,index)
     const [loading, setLoading] = useState(true);
 
 
     const handleSelect = (selectedIndex, e) =>{
         setIndex(selectedIndex);
         onGrafDataChange(data.collectionid, selectedIndex);
-        setLoading(false)
+        setLoading(false);
     }
+
+    //this is some weird hack ive done to fix an annoying bug 
 
     const renderArtists = () =>{
         if(data.collections[index].artists === undefined){
