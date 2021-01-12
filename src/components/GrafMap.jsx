@@ -185,7 +185,7 @@ function GrafMap() {
         
         }
 
-        {(showInfo !== null) && (popupData !== null) &&
+        {(showInfo !== false) && (popupData !== null) &&
            <InfoModal 
               grafData={data[popupData].collections[popupIndex]} 
               show={showInfo} 
@@ -194,6 +194,8 @@ function GrafMap() {
               onHide={()=>{setShowInfo(false); onGrafDataChange(null,null)}}
               onGrafMarkerClick={onGrafMarkerClick}
               onGrafDataChange={onGrafDataChange}
+              openInfo={()=> {setShowInfo(true);}}
+              
               />
               }
               

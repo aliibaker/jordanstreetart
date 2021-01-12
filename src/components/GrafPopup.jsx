@@ -13,10 +13,7 @@ const GrafPopup = ({data, index, onGrafDataChange, launchInfoModal}) =>{
     const {lat, lng} = data.collections[index];
     const [activeIndex, setIndex] = useState(index);
     const [loading, setLoading] = useState(true);
-    
-    useEffect(()=>{
-        setIndex(index)
-    }, [])
+
 
     const handleSelect = (selectedIndex, e) =>{
         setIndex(selectedIndex);

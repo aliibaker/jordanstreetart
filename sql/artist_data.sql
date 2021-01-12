@@ -5,7 +5,7 @@ INSERT INTO artist(id, name, link) VALUES(3, "Suha Sultan", "https://www.instagr
 INSERT INTO artist(id, name, link) VALUES(4, "Miramar", "https://www.instagram.com/miramar.muhd" );
 INSERT INTO artist(id, name, link) VALUES(5, "AWS", "https://www.instagram.com/awsabusalah_/");
 INSERT INTO artist(id, name, link) VALUES(6, "Wize One", "https://www.instagram.com/wesamshadid/");
-INSERT INTO artist(id, name, link) VALUES(7, "Dhad Store", "https://www.instagram.com/dhadstore/");
+INSERT INTO artist(id, name, link) VALUES(7, "Dhad", "https://www.instagram.com/dhadstore/");
 INSERT INTO artist(id, name, link) VALUES(8, "Dina Aqel", "https://www.instagram.com/dina_aqel/");
 INSERT INTO artist(id, name, link) VALUES(9, "MigTheRobot", "https://www.instagram.com/migtherobot/");
 INSERT INTO artist(id, name, link) VALUES(10, "CPTIN", "https://www.instagram.com/aboodgraffiti/");
@@ -14,3 +14,12 @@ INSERT INTO artist(id, name, link) VALUES(12, "Yazan Halawani", "https://www.ins
 INSERT INTO artist(id, name, link) VALUES(13, "SINER", "https://www.instagram.com/siner_19/");
 INSERT INTO artist(id, name, link) VALUES(14, "Sara Allan", "https://www.instagram.com/inahasara/");
 INSERT INTO artist(id, name, link) VALUES(15, "omarsha3", "https://www.instagram.com/omarsha3/");
+INSERT INTO artist(id, name, link) VALUES(16, "Fintan Magee", "https://www.instagram.com/fintan_magee/");
+INSERT INTO artist(id, name, link) VALUES(17, "CamiloFidel López", "https://www.instagram.com/camilofidel/");
+INSERT INTO artist(id, name, link) VALUES(18, "Joanna A. Arida", "https://www.instagram.com/joannaarida/");
+INSERT INTO artist(id, name, link) VALUES(19, "Don Mateo", "https://www.instagram.com/donmateo_/");
+INSERT INTO artist(id, name, link) VALUES(20, "Yazan Bahar", "https://www.instagram.com/yazan.bahar/");
+INSERT INTO artist(id, name, link) VALUES(21, "Pablo Fontagnier", "https://www.instagram.com/hombre_suk_trs/");
+INSERT INTO artist(id, name, link) VALUES(22, "Chaf", "https://www.instagram.com/chaf.41/");
+INSERT INTO artist(id, name, link) VALUES(23, "Dina Saadi", "https://www.instagram.com/Dinasaadi/");
+INSERT INTO artist(id, name, link) VALUES(24, "Ibrahim Tonnerieux", "https://www.instagram.com/elbramso/");

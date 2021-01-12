@@ -24,10 +24,20 @@
 }
 
 .other-works img{
-    width:75px;
-    height:75px;
     border-radius: 50%;
-    margin:2px
+    width: 75px;
+    height: 75px;
+    background-color: none;
+    border: double 2px transparent;
+    border-radius: 80px;
+    background-image: linear-gradient(white, white), radial-gradient(circle at top left, rgb(58, 28, 11),#573b2e);
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+    -moz-border-radius:50%;
+    -webkit-border-radius:50%;
+    padding: 0;
+    cursor: pointer;
+    margin:4px;
 
 }
 

@@ -22,7 +22,7 @@ const GrafMarker = ({grafCollection, collectionId, onClick, onGrafDataChange, se
         ind = currentIndex
     }
     const[index, setIndex] = useState(ind)
-    const[data, setData] = useState(grafCollection[index])
+    const[data, setData] = useState(grafCollection[ind])
 
     const cycleImages = () => {
         if(index < grafCollection.length - 1){
