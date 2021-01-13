@@ -15,6 +15,7 @@ const InfoModal = ({grafData, collectionId, index, show, onHide, onGrafMarkerCli
     }
     const [artistWork, setArtistWork] = useState([...Array(arraySize)].map(e => Array(0)))
     const [loaded, setLoaded] = useState(false)
+    const [fetching, setFetching] = useState(true)
 
 
 
@@ -38,7 +39,7 @@ const InfoModal = ({grafData, collectionId, index, show, onHide, onGrafMarkerCli
         if(grafData.artists.length > 1){
           let artistJsx = []
           grafData.artists.forEach((artist,index)=>{
-  
+            console.log(artistWork[index])
             if(artistWork[index] !== undefined && artistWork[index].length > 1){
               artistJsx.push(<>
                   <h6>{artist.name}'s work: </h6>
@@ -51,7 +52,7 @@ const InfoModal = ({grafData, collectionId, index, show, onHide, onGrafMarkerCli
                             onClick={()=> {
                               onGrafMarkerClick(art.data[0].lat, art.data[0].lng); 
                               setArtistWork([]);  
-                              setTimeout(()=>{onGrafDataChange(art.data[0].collectionid, art.data[0].collection_index); console.log('yes')}, 1000); 
+                              setTimeout(()=>{onGrafDataChange(art.data[0].collectionid, art.data[0].collection_index);}, 1000); 
                              openInfo()}} 
                             alt={art.data[0].id}></img>)
                         }
@@ -68,9 +69,6 @@ const InfoModal = ({grafData, collectionId, index, show, onHide, onGrafMarkerCli
                 <h6>Other work for {artist.name} not found on website</h6>
               )
             }
-
-            
-
           })
    
           return artistJsx;
@@ -116,23 +114,29 @@ const InfoModal = ({grafData, collectionId, index, show, onHide, onGrafMarkerCli
 
         return Promise.all(dataArray);
       }
+      setArtistWork([])
+      let tempArr = [...artistWork]
       if(grafData.artists !== undefined){
         grafData.artists.forEach(async (artist, index)=>{
           fetch(`/api/creds?artist_id=${artist.id}`).then(res => res.json()).then(async data => {
      
             let artWorkData = await processArtworkData(data);
-            let tempArr = [...artistWork]
+            console.log(artWorkData)
             tempArr[index] = artWorkData
     
-            setArtistWork(tempArr);
+            
+            console.log(tempArr)
           
             
           })
         })
       }
+
+      setArtistWork(tempArr);
+      setFetching(false);
     
 
-    },[grafData.artists])
+    }, [])
 
     return(<>
         <Modal
@@ -157,7 +161,7 @@ const InfoModal = ({grafData, collectionId, index, show, onHide, onGrafMarkerCli
         
         <Modal.Body>
           {renderArtists()}
-          {renderArtistWork()}
+          {!fetching && renderArtistWork()}
 
         
         </Modal.Body>
