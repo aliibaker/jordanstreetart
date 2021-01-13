@@ -45,12 +45,13 @@ const InfoModal = ({grafData, collectionId, index, show, onHide, onGrafMarkerCli
                   <div className="other-works">
                     {artistWork[index].map(art=>{
                         if(art !== null){
+                          console.log(art)
                           return(<img 
                             src={`/hd_images/${art.data[0].filename}`} 
                             onClick={()=> {
                               onGrafMarkerClick(art.data[0].lat, art.data[0].lng); 
                               setArtistWork([]);  
-                              setTimeout(()=>{onGrafDataChange(art.data[0].collectionid, art.data[0].collection_index); console.log('yes')}, 5000); 
+                              setTimeout(()=>{onGrafDataChange(art.data[0].collectionid, art.data[0].collection_index); console.log('yes')}, 1000); 
                              openInfo()}} 
                             alt={art.data[0].id}></img>)
                         }
