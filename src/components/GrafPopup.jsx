@@ -11,9 +11,7 @@ import './GrafPopup.css'
 
 const GrafPopup = ({data, index, onGrafDataChange, launchInfoModal}) =>{
     const {lat, lng} = data.collections[index];
-    let test = index
     const [activeIndex, setIndex] = useState(index);
-    console.log(activeIndex,index)
     const [loading, setLoading] = useState(true);
 
 

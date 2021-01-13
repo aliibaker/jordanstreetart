@@ -1,5 +1,6 @@
 import Modal from 'react-bootstrap/Modal'
 import Button from 'react-bootstrap/Button'
+import Spinner from 'react-bootstrap/Spinner'
 import * as React from 'react'
 import {useState, useEffect} from 'react'
 
@@ -136,11 +137,11 @@ const InfoModal = ({grafData, collectionId, index, show, onHide, onGrafMarkerCli
       setFetching(false);
     
 
-    }, [])
+    },[grafData.artists])
 
     return(<>
         <Modal
-      
+        key={index}
         show={show}
         onHide={onHide}
         size="lg"
@@ -161,7 +162,7 @@ const InfoModal = ({grafData, collectionId, index, show, onHide, onGrafMarkerCli
         
         <Modal.Body>
           {renderArtists()}
-          {!fetching && renderArtistWork()}
+          {fetching ? <Spinner animation="border" className="d-flex justify-content-center"></Spinner>: (artistWork.length > 0 && renderArtistWork())}
 
         
         </Modal.Body>
