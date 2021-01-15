@@ -42,7 +42,7 @@ const GrafMarker = ({grafCollection, collectionId, onClick, onGrafDataChange, se
                 cycleImages()
              
                 
-            }, 4000)
+            }, 3000)
             return () =>{ 
                 clearInterval(interval);
                 
@@ -68,6 +68,7 @@ const GrafMarker = ({grafCollection, collectionId, onClick, onGrafDataChange, se
                             onClick();
                             e.preventDefault();
                             onGrafDataChange(collectionId, ind);
+                            console.log(collectionId, ind)
                             }}></Image>
                 </Marker>
                 

@@ -25,7 +25,7 @@ const InfoModal = ({grafData,
       if(grafData.artists !== undefined){
         if(grafData.artists.length > 1){
           const artistData = grafData.artists.map(dt =>(
-            <span><Button variant="link" href={`${dt.link}`} target="_blank">{dt.name}</Button></span>
+            <span key={dt.id}><Button variant="link" href={`${dt.link}`} target="_blank">{dt.name}</Button></span>
           ))
 
           return(<h5>Artists: {artistData}</h5>)
@@ -102,9 +102,9 @@ const InfoModal = ({grafData,
         </Modal.Body>
         <Modal.Footer>
           <div className ="">
-            <Button className= "mr-auto p-2" variant="outline-success" href={`https://www.google.com/maps/search/?api=1&query=${grafData.lat},${grafData.lng}`}target='_blank'><i class="fa fa-map-marker" aria-hidden="true"></i> Location</Button>
+            <Button className= "mr-auto p-2" variant="outline-success" href={`https://www.google.com/maps/search/?api=1&query=${grafData.lat},${grafData.lng}`}target='_blank'><i className="fa fa-map-marker" aria-hidden="true"></i> Location</Button>
           </div>
-          <Button className= "mr-auto p-2" variant="outline-warning"><i class="fas fa-exclamation-triangle"></i> Report an Issue</Button>
+          <Button className= "mr-auto p-2" variant="outline-warning"><i className="fas fa-exclamation-triangle"></i> Report an Issue</Button>
           <Button className= "" onClick={onHide} variant='outline-primary'>Close</Button>
 
         </Modal.Footer>

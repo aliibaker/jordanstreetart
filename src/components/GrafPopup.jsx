@@ -31,12 +31,12 @@ const GrafPopup = ({data, index, onGrafDataChange, launchInfoModal, onMoreInfoCl
             if(data.collections[index].artists.length > 1){
                 return(<Card.Text className="artist-text"><span>Artists: </span>
                         {data.collections[index].artists.map((artist, index) => (
-                            <Card.Link className="" href={`${artist.link}`} target="_blank" >{artist.name}</Card.Link>
+                            <Card.Link key={artist.id} className="" href={`${artist.link}`} target="_blank" >{artist.name}</Card.Link>
                         ))}
                         </Card.Text>);
             }
             else{
-                return(<Card.Text>  <p style={{display: "inline"}}>Artist: </p>
+                return(<Card.Text>  <span style={{display: "inline"}}>Artist: </span>
                     <Card.Link href={data.collections[index].artists[0].link} target="_blank">
                         {data.collections[index].artists[0].name}
                     </Card.Link>
@@ -71,7 +71,7 @@ const GrafPopup = ({data, index, onGrafDataChange, launchInfoModal, onMoreInfoCl
             </Card.Body>
             <hr style={{height: "2px", margin:"0px"}}></hr>
             <Card.Body className="moreinfo-button d-flex justify-content-center">
-                <Button className= "mr-auto p-2" variant="outline-success" href={`https://www.google.com/maps/search/?api=1&query=${lat},${lng}`}target='_blank'><i class="fa fa-map-marker" aria-hidden="true"></i> Location</Button>
+                <Button className= "mr-auto p-2" variant="outline-success" href={`https://www.google.com/maps/search/?api=1&query=${lat},${lng}`}target='_blank'><i className="fa fa-map-marker" aria-hidden="true"></i> Location</Button>
                 <Button variant="outline-info" onClick={()=>{launchInfoModal(); onMoreInfoClick(data.collectionid, activeIndex)}}>More Info</Button>
             </Card.Body>
             

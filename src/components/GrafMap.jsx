@@ -16,14 +16,21 @@ import axios from 'axios';
 
 
 function GrafMap() {
+  //data of all the murals, divided into collections
   const[data, setData] = useState([]);
+  //stores the current collection data selected
   const[popupData, setPopupData] = useState(null);
+  //stores the index of the data in the collection being viewed
   const[popupIndex, setPopupIndex] = useState(null);
+  //bool to determine if info modal should be shown
   const[showInfo, setShowInfo] = useState(false);
+  //bool to know if map is transitioning to another point
   const[transitioning, setTransitioning] = useState(false);
+  //artist work data for the info modal
   const[artistWork, setArtistWork] = useState([]);
 
 
+  //map base configuration
   const[viewport, setViewport] = useState({
       latitude: 31.963198,
       longitude: 35.930359,
@@ -32,7 +39,8 @@ function GrafMap() {
   
   //sets map reference 
   const mapRef = useRef();
-  //fetches data from REST api 
+
+  //fetches data from REST api, only done once
   useEffect(() =>{
     fetch('/api/graffiti').then(res => res.json()).then(data => {
       setData(data)
@@ -43,17 +51,13 @@ function GrafMap() {
         setPopupIndex(null);
       }
     };
+    //event listener to check if user clicks outside the popup to close it.
     window.addEventListener("mousedown", listener)
 
     return(()=> {window.removeEventListener("mousedown", listener)})
   }, [])
   
-
-  const getGrafData = (collectionId, cIndex) =>{
-    return data[collectionId].collections[cIndex]
-  }
-
-
+  //if a user clicks a marker, it takes it to the new location in 1000ms, closes the infomodal 
   const onGrafMarkerClick = (latitude, longitude) =>{
     setViewport({
       ...viewport,
@@ -70,16 +74,19 @@ function GrafMap() {
     },1200);
     setShowInfo(false);
   }
+  //function which when called changes the current data being viewed 
   const onGrafDataChange = (currData, index) =>{
     setPopupData(currData)
     setPopupIndex(index)
 
   };
 
+  //when the more info button is clicked, data is fetched to store the artist's other work to be passed into the infomodal component 
   const onMoreInfoClick = async (cId, cIn) => {
     setArtistWork([]);
     const artists = data[cId].collections[cIn].artists;
     console.log(cId,cIn);
+    //check if the mural has 
     if(artists !== undefined){
       let artistData = artists.map( async (artist, index)=>{
         let fetchArtistData = await axios.get(`/api/creds?artist_id=${artist.id}`);
@@ -126,11 +133,6 @@ function GrafMap() {
     bounds: bounds,
     options: {radius: 46, maxZoom: 20}
   })
-
-
-
-
-
 
   useEffect(() =>{
     let found = false
@@ -179,6 +181,7 @@ function GrafMap() {
             return(
               <Marker key={cluster.id} latitude={latitude} longitude={longitude}>
                 <div className="cluster-marker" 
+                      key={cluster.id}
                       style={{width: `${75 + pointCount/points.length*30}px`,
                               height: `${75 + pointCount/points.length*30}px`}}
                       onClick={(e) => {
