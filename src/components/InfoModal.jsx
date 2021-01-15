@@ -9,14 +9,15 @@ import './InfoModal.css'
 import axios from 'axios'
 
 
-const InfoModal = ({grafData, collectionId, index, show, onHide, onGrafMarkerClick, onGrafDataChange, openInfo}) => {
-    let arraySize = 0;
-    if(grafData.artists !== undefined){
-      arraySize = grafData.artists.length;
-    }
-    const [artistWork, setArtistWork] = useState([...Array(arraySize)].map(e => Array(0)))
-    const [loaded, setLoaded] = useState(false)
-    const [fetching, setFetching] = useState(true)
+const InfoModal = ({grafData, 
+                    show, 
+                    onHide, 
+                    onGrafMarkerClick, 
+                    onGrafDataChange, 
+                    openInfo, 
+                    onMoreInfoClick, 
+                    artistWork}) => {
+    const [loaded, setLoaded] = useState(false);
 
 
 
@@ -34,114 +35,47 @@ const InfoModal = ({grafData, collectionId, index, show, onHide, onGrafMarkerCli
 
       return <h5>Artist: Unknown</h5>
     }
-
     const renderArtistWork = () =>{
-      if(grafData.artists !== undefined){
-        if(grafData.artists.length > 1){
-          let artistJsx = []
-          grafData.artists.forEach((artist,index)=>{
-            console.log(artistWork[index])
-            if(artistWork[index] !== undefined && artistWork[index].length > 1){
-              artistJsx.push(<>
-                  <h6>{artist.name}'s work: </h6>
+      if(artistWork.length !== 0){
+        return(
+          artistWork.map((work, index)=>{
+            if(work.length !== 0){
+              return(<>
+                  <h6>{grafData.artists[index].name}'s work: </h6>
                   <div className="other-works">
-                    {artistWork[index].map(art=>{
-                        if(art !== null){
-                          console.log(art)
-                          return(<img 
-                            src={`/hd_images/${art.data[0].filename}`} 
-                            onClick={()=> {
-                              onGrafMarkerClick(art.data[0].lat, art.data[0].lng); 
-                              setArtistWork([]);  
-                              setTimeout(()=>{onGrafDataChange(art.data[0].collectionid, art.data[0].collection_index);}, 1000); 
-                             openInfo()}} 
-                            alt={art.data[0].id}></img>)
-                        }
-                        else{
-                          return null;
-                        }
-                        
-                    })}
+                    {work[0].length !== 1 ? work[0].map((dt)=>{
+                      if(dt.data[0].id !== grafData.id){
+                        return(<img 
+                          alt={`/hd_images/${dt.data[0].filename}`}
+                          src={`/hd_images/${dt.data[0].filename}`} 
+                          onClick={()=> {
+                            console.log(dt.data[0].collectionid, dt.data[0].collection_index);
+                            onGrafMarkerClick(dt.data[0].lat, dt.data[0].lng); 
+                            onGrafDataChange(dt.data[0].collectionid, dt.data[0].collection_index);
+                            onMoreInfoClick(dt.data[0].collectionid, dt.data[0].collection_index);
+                           }}/>)
+                      }
+      
+                    }): <p>No other work found on site.</p>}
                   </div>
-                  </>)
+              </>)
             }
-            else{
-              artistJsx.push(
-                <h6>Other work for {artist.name} not found on website</h6>
-              )
-            }
-          })
-   
-          return artistJsx;
-          
-        }
-        return(<><h6>Other Works:</h6><div className="other-works">
-              {artistWork[0] && artistWork[0].map((art)=>{
-                if (art !== null){
-                  return(
-                    <img 
-                      src={`/hd_images/${art.data[0].filename}`} 
-                      onClick={()=> {
-                              onGrafMarkerClick(art.data[0].lat, art.data[0].lng); 
-                              setArtistWork([]); 
-                              onGrafDataChange(art.data[0].collectionid, art.data[0].collection_index);
-                              openInfo();
-                               }} 
-                      alt={art.data[0].id}
-                      >
-                        
-                      </img>
-                    )
-                }
-                return null;
-
-
-      })}
-      </div></>)
-      }
-      return null;
-    }
-
-    useEffect(() =>{
-
-      const processArtworkData =  async (data) => {
-        let dataArray = data.map(async dt =>{
-          if(dt.graffiti_id !== grafData.id){
-            let fetchedGraffiti = await axios.get(`/api/graffiti_query?graffiti_id=${dt.graffiti_id}`)
-            return fetchedGraffiti;
+            return null;
           }
-          return null;
-        })
+        )
+        )
+    }
+  }
 
-        return Promise.all(dataArray);
-      }
-      setArtistWork([])
-      let tempArr = [...artistWork]
-      if(grafData.artists !== undefined){
-        grafData.artists.forEach(async (artist, index)=>{
-          fetch(`/api/creds?artist_id=${artist.id}`).then(res => res.json()).then(async data => {
-     
-            let artWorkData = await processArtworkData(data);
-            console.log(artWorkData)
-            tempArr[index] = artWorkData
-    
-            
-            console.log(tempArr)
-          
-            
-          })
-        })
-      }
 
-      setArtistWork(tempArr);
-      setFetching(false);
-    
+    useEffect(()=>{
+      setTimeout(()=>{setLoaded(true)}, 2000)
 
-    },[grafData.artists])
+    }, [artistWork])
 
     return(<>
         <Modal
-        key={index}
+        key={grafData.id}
         show={show}
         onHide={onHide}
         size="lg"
@@ -161,10 +95,10 @@ const InfoModal = ({grafData, collectionId, index, show, onHide, onGrafMarkerCli
         </Modal.Body>
         
         <Modal.Body>
-          {renderArtists()}
-          {fetching ? <Spinner animation="border" className="d-flex justify-content-center"></Spinner>: (artistWork.length > 0 && renderArtistWork())}
+           {/* This renders the artists and their work if they have any  */}
+          {renderArtists()} 
+          {grafData.artists !== undefined ? ((loaded === true) ? renderArtistWork(): <div>loading...</div>):null}
 
-        
         </Modal.Body>
         <Modal.Footer>
           <div className ="">

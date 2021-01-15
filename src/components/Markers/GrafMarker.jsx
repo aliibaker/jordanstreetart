@@ -64,9 +64,10 @@ const GrafMarker = ({grafCollection, collectionId, onClick, onGrafDataChange, se
                     >
                     <Image 
                         src={`/images/${data.filename}`} 
-                        onClick={() => {
-                            onClick()
-                            onGrafDataChange(collectionId, ind)
+                        onClick={(e) => {
+                            onClick();
+                            e.preventDefault();
+                            onGrafDataChange(collectionId, ind);
                             }}></Image>
                 </Marker>
                 

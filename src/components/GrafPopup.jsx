@@ -9,7 +9,7 @@ import './GrafPopup.css'
 
 
 
-const GrafPopup = ({data, index, onGrafDataChange, launchInfoModal}) =>{
+const GrafPopup = ({data, index, onGrafDataChange, launchInfoModal, onMoreInfoClick}) =>{
     const {lat, lng} = data.collections[index];
     const [activeIndex, setIndex] = useState(index);
     const [loading, setLoading] = useState(true);
@@ -72,7 +72,7 @@ const GrafPopup = ({data, index, onGrafDataChange, launchInfoModal}) =>{
             <hr style={{height: "2px", margin:"0px"}}></hr>
             <Card.Body className="moreinfo-button d-flex justify-content-center">
                 <Button className= "mr-auto p-2" variant="outline-success" href={`https://www.google.com/maps/search/?api=1&query=${lat},${lng}`}target='_blank'><i class="fa fa-map-marker" aria-hidden="true"></i> Location</Button>
-                <Button variant="outline-info" onClick={launchInfoModal}>More Info</Button>
+                <Button variant="outline-info" onClick={()=>{launchInfoModal(); onMoreInfoClick(data.collectionid, activeIndex)}}>More Info</Button>
             </Card.Body>
             
 

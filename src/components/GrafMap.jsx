@@ -11,13 +11,17 @@ import InfoModal from './InfoModal';
 import ArtistProfile from './ArtistProfile';
 
 
+import axios from 'axios';
+
+
 
 function GrafMap() {
   const[data, setData] = useState([]);
   const[popupData, setPopupData] = useState(null);
   const[popupIndex, setPopupIndex] = useState(null);
   const[showInfo, setShowInfo] = useState(false);
-  const[transitioning, setTransitioning] = useState(false)
+  const[transitioning, setTransitioning] = useState(false);
+  const[artistWork, setArtistWork] = useState([]);
 
 
   const[viewport, setViewport] = useState({
@@ -60,7 +64,10 @@ function GrafMap() {
       transitionDuration: 1000
     });
     setTransitioning(true);
-    setTimeout(()=>{setTransitioning(false)},1200);
+    setTimeout(()=>{
+      setTransitioning(false);
+
+    },1200);
     setShowInfo(false);
   }
   const onGrafDataChange = (currData, index) =>{
@@ -68,6 +75,34 @@ function GrafMap() {
     setPopupIndex(index)
 
   };
+
+  const onMoreInfoClick = async (cId, cIn) => {
+    setArtistWork([]);
+    const artists = data[cId].collections[cIn].artists;
+    console.log(cId,cIn);
+    if(artists !== undefined){
+      let artistData = artists.map( async (artist, index)=>{
+        let fetchArtistData = await axios.get(`/api/creds?artist_id=${artist.id}`);
+        Promise.resolve(fetchArtistData)
+        let dataArray = fetchArtistData.data.map(async (dt) => {
+          let fetchGrafData = await axios.get(`/api/graffiti_query?graffiti_id=${dt.graffiti_id}`);
+         
+          return Promise.resolve(fetchGrafData);
+        })
+        return Promise.all(dataArray);
+      })
+  
+      let tempArr = []
+      artistData.forEach((artist, index) =>{
+         tempArr.push([])
+          artist.then(dt=> {
+            tempArr[index].push(dt)
+          })
+        
+      })
+      setArtistWork(tempArr);
+    }
+  }
 
   //creating clusters
   const points = data.map(graf => ({
@@ -91,6 +126,9 @@ function GrafMap() {
     bounds: bounds,
     options: {radius: 46, maxZoom: 20}
   })
+
+
+
 
 
 
@@ -143,7 +181,7 @@ function GrafMap() {
                 <div className="cluster-marker" 
                       style={{width: `${75 + pointCount/points.length*30}px`,
                               height: `${75 + pointCount/points.length*30}px`}}
-                      onClick={() => {
+                      onClick={(e) => {
                         const expansionZoom = Math.min(supercluster.getClusterExpansionZoom(cluster.id), 20);
                         setViewport({
                           ...viewport,
@@ -152,7 +190,9 @@ function GrafMap() {
                           zoom: expansionZoom,
                           transitionInterpolator: new FlyToInterpolator({ speed: 2}),
                           transitionDuration: "auto"
-                        })
+                        });
+                        e.preventDefault();
+
                       }}                                 >
                 {pointCount}
                 </div>
@@ -179,7 +219,12 @@ function GrafMap() {
           )
         })}
         {popupData !== null && 
-          <GrafPopup data={data[popupData]} index={popupIndex} onGrafDataChange={onGrafDataChange} launchInfoModal={()=>{setShowInfo(true);  }}>
+          <GrafPopup 
+            data={data[popupData]} 
+            index={popupIndex} 
+            onGrafDataChange={onGrafDataChange} 
+            onMoreInfoClick={onMoreInfoClick}
+            launchInfoModal={()=>{setShowInfo(true);}}>
 
           </GrafPopup>
         
@@ -194,7 +239,8 @@ function GrafMap() {
               onHide={()=>{setShowInfo(false); onGrafDataChange(null,null)}}
               onGrafMarkerClick={onGrafMarkerClick}
               onGrafDataChange={onGrafDataChange}
-              openInfo = {()=> setTimeout(()=>setShowInfo(true), 700)}
+              onMoreInfoClick = {(cId, cIn) => {onMoreInfoClick(cId, cIn);setTimeout(()=>{setShowInfo(true);}, 1000); }}
+              artistWork = {artistWork}
               
               />
               }
