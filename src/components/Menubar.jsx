@@ -2,6 +2,7 @@ import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import * as React from 'react';
 
+import './Menubar.css'
 
 const Menubar = () => {
     return (
@@ -13,7 +14,13 @@ const Menubar = () => {
                className = "d-inline-block align-top"
                alt = "ASA Logo"
                /> {' '}
-          JORDAN STREET ART
+          <span className = "lg-view">
+            JORDAN STREET ART
+          </span>
+          <span className = "sm-view">
+            JSA 
+          </span>
+          
         </Navbar.Brand>
         <Nav className="mr-auto">
           <Nav.Link href="">About</Nav.Link>
@@ -24,7 +31,7 @@ const Menubar = () => {
                             e.preventDefault();
                             window.open(`https://github.com/bakesbasha/ammanstreetart`);
                             }     }>
-                <i className="fab fa-github fa-2x"></i>
+                <i style={{cursor:"click"}}className="fab fa-github fa-2x"></i>
             </span>
             
         </Navbar.Collapse>

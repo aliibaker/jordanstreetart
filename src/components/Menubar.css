@@ -1,0 +1,17 @@
+.sm-view{
+    display: none;
+}
+
+.lg-view{
+    display: inline-block
+}
+
+@media screen and (max-width: 500px) {
+    .lg-view{
+       display: none;
+    }
+
+    .sm-view{
+       display: inline-block;
+    }
+}

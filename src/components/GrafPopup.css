@@ -27,3 +27,30 @@
     margin: 0px;
 }
 
+.spinner-class{
+    max-width: auto;
+    min-height: 200px;
+}
+
+.mural-image{
+    min-width:auto;
+    min-height:auto;
+}
+
+.loading-div{
+    min-width: 200px;
+    min-height: 121px;
+}
+
+.spinner-border{
+    margin: auto;
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0
+}
+
+

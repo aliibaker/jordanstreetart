@@ -52,18 +52,19 @@ const GrafPopup = ({data, index, onGrafDataChange, launchInfoModal, onMoreInfoCl
         <Popup latitude={lat} longitude={lng} offsetLeft = {40} offsetTop = {10} style ={{opacity: 0}}>
           
             <Card style={{ width: '13.5rem' }}>
-                {data.collections.length > 1 ?
-                    <Carousel activeIndex={activeIndex} onSelect={handleSelect} indicators={false} interval={null}> 
-                
-                        {data.collections.map(graf =>(
-                            <Carousel.Item key={graf.id}>
-                                    {loading && <Spinner animation="border" className="d-flex justify-content-center"></Spinner>}
-                                    <Card.Img style={{display: loading ? "none" : "block"}} src={`/hd_images/${graf.filename}`} onLoad={()=> setLoading(false)}></Card.Img>
-                            </Carousel.Item>
+                <div className={loading ? 'loading-div':'mural-image'}>
+                    {data.collections.length > 1 ?
+                        <Carousel activeIndex={activeIndex} onSelect={handleSelect} indicators={false} interval={null}> 
                             
-                        ))}
-                    </Carousel>:<> {loading && <Spinner animation="border" className="d-flex justify-content-center"></Spinner> }<Card.Img style={{display: loading ? "none" : "block"}}src={`/hd_images/${data.collections[index].filename}`} onLoad={()=> setLoading(false)}></Card.Img> </>}
-                
+                            {data.collections.map(graf =>(
+                                <Carousel.Item key={graf.id}>
+                                        {loading && <Spinner animation="border" className="d-flex spinner-class" ></Spinner>}
+                                        <Card.Img style={{display: loading ? "none" : "block"}} src={`/hd_images/${graf.filename}`} onLoad={()=> setLoading(false)}></Card.Img>
+                                </Carousel.Item>
+                                
+                            ))}
+                        </Carousel>:<> {loading && <div><Spinner animation="border" className="" ></Spinner></div> }<Card.Img style={{display: loading ? "none" : "block"}}src={`/hd_images/${data.collections[index].filename}`} onLoad={()=> setLoading(false)}></Card.Img> </>}
+                    </div>
             <Card.Body className="googlemap-button">
               
                 {renderArtists()}

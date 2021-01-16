@@ -5,6 +5,7 @@
 .infomodal-body img{
     max-width:100%;
     height: auto;
+    align-items: flex-start;
     
     
 }

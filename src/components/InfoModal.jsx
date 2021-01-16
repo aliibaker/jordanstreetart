@@ -69,7 +69,7 @@ const InfoModal = ({grafData,
 
 
     useEffect(()=>{
-      setTimeout(()=>{setLoaded(true)}, 2000)
+      setTimeout(()=>{setLoaded(true)}, 1000)
 
     }, [artistWork])
 
