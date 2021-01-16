@@ -4,7 +4,7 @@ import * as React from 'react';
 
 import './Menubar.css'
 
-const Menubar = () => {
+const Menubar = ({showAbout, showTour}) => {
     return (
         <Navbar bg="dark" variant="dark" className="custom-menu">
         <Navbar.Brand href="/">
@@ -23,8 +23,8 @@ const Menubar = () => {
           
         </Navbar.Brand>
         <Nav className="mr-auto">
-          <Nav.Link href="">About</Nav.Link>
-          <Nav.Link href="">Submit</Nav.Link>
+          <Nav.Link onClick={showAbout}>About</Nav.Link>
+          <Nav.Link onClick={showTour}>Tour</Nav.Link>
       </Nav>
         <Navbar.Collapse className = "justify-content-end">
             <span style={{color: "Tomato"}} onClick = {(e) => {
