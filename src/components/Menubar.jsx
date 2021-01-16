@@ -1,5 +1,6 @@
-import Navbar from 'react-bootstrap/Navbar'
-import * as React from 'react'
+import Navbar from 'react-bootstrap/Navbar';
+import Nav from 'react-bootstrap/Nav';
+import * as React from 'react';
 
 
 const Menubar = () => {
@@ -14,6 +15,10 @@ const Menubar = () => {
                /> {' '}
           JORDAN STREET ART
         </Navbar.Brand>
+        <Nav className="mr-auto">
+          <Nav.Link href="">About</Nav.Link>
+          <Nav.Link href="">Submit</Nav.Link>
+      </Nav>
         <Navbar.Collapse className = "justify-content-end">
             <span style={{color: "Tomato"}} onClick = {(e) => {
                             e.preventDefault();
