@@ -19,15 +19,33 @@ function GrafMap() {
   //data of all the murals, divided into collections
   const[data, setData] = useState([]);
   //stores the current collection data selected
-  const[popupData, setPopupData] = useState(null);
+  const[collectionId, setCollectionId] = useState(null);
   //stores the index of the data in the collection being viewed
-  const[popupIndex, setPopupIndex] = useState(null);
+  const[collectionIndex, setCollectionIndex] = useState(null);
   //bool to determine if info modal should be shown
   const[showInfo, setShowInfo] = useState(false);
   //bool to know if map is transitioning to another point
   const[transitioning, setTransitioning] = useState(false);
   //artist work data for the info modal
   const[artistWork, setArtistWork] = useState([]);
+  //show popup state
+  const [showPopup, setShowPopup] = useState(false);
+
+
+  const updateData = (cId, cIn) =>{
+    setCollectionId(cId);
+    setCollectionIndex(cIn);
+  }
+
+  const updatePopup = (cId, cIn) =>{
+    setShowPopup(false);
+    updateData(cId, cIn);
+    setShowPopup(true);
+  }
+
+  // const updateInfoModal = (cId, cIn) =>{
+  
+  // }
 
 
   //map base configuration
@@ -47,8 +65,7 @@ function GrafMap() {
     })
     const listener = e =>{
       if(e.target.classList.contains("overlays")){
-        setPopupData(null);
-        setPopupIndex(null);
+        setShowPopup(false);
       }
     };
     //event listener to check if user clicks outside the popup to close it.
@@ -56,32 +73,64 @@ function GrafMap() {
 
     return(()=> {window.removeEventListener("mousedown", listener)})
   }, [])
-  
-  //if a user clicks a marker, it takes it to the new location in 1000ms, closes the infomodal 
-  const onGrafMarkerClick = (latitude, longitude) =>{
+
+
+  const updateLocation = (lat, lng) =>{
     setViewport({
       ...viewport,
-      latitude,
-      longitude,
+      latitude: lat,
+      longitude: lng,
       zoom: 20,
-      transitionInterpolator: new FlyToInterpolator({ speed: 1}),
+      transitionInterpolator: new FlyToInterpolator({speed: 1}),
       transitionDuration: 1000
     });
     setTransitioning(true);
     setTimeout(()=>{
       setTransitioning(false);
+    }, 1200)
 
-    },1200);
-    setShowInfo(false);
   }
-  //function which when called changes the current data being viewed 
-  const onGrafDataChange = (currData, index) =>{
-    setPopupData(currData)
-    setPopupIndex(index)
+  
+  //if a user clicks a marker, it takes it to the new location in 1000ms, closes the infomodal 
+  // const onGrafMarkerClick = (latitude, longitude) =>{
+  //   setShowPopup(false);
+  //   setViewport({
+  //     ...viewport,
+  //     latitude,
+  //     longitude,
+  //     zoom: 20,
+  //     transitionInterpolator: new FlyToInterpolator({ speed: 1}),
+  //     transitionDuration: 1000
+  //   });
+  //   setTransitioning(true);
+  //   setTimeout(()=>{
+  //     setTransitioning(false);
 
-  };
+  //   },1200);
+  //   setShowPopup(true);
+  //   setShowInfo(false);
+  // }
+  //function which when called changes the current data being viewed 
+
+  
+
+  // const hidePopup = () =>{
+  //   setShowPopup(false);
+  //   onGrafDataChange(null, null);
+  // }
 
   //when the more info button is clicked, data is fetched to store the artist's other work to be passed into the infomodal component 
+
+  const onInfoMarkerClick = (cId, cIn) =>{
+    setShowInfo(false);
+    setTimeout(()=>{setShowInfo(true)}, 1000)
+    console.log(data[cId]);
+    updateLocation(data[cId].collections[cIn].lat, data[cId].collections[cIn].lng);
+    updatePopup(cId, cIn);
+    onMoreInfoClick(cId, cIn);
+    console.log(cId, cIn)
+  }
+
   const onMoreInfoClick = async (cId, cIn) => {
     setArtistWork([]);
     const artists = data[cId].collections[cIn].artists;
@@ -137,16 +186,16 @@ function GrafMap() {
   useEffect(() =>{
     let found = false
     if(!transitioning)
-      if(popupData !== null){
+      if(collectionId !== null){
         clusters.forEach(cluster =>{
-          if(cluster.properties.collectionId === popupData){
+          if(cluster.properties.collectionId === collectionId){
             found = true
           }
         })
         if(!found)
         {
-          setPopupData(null)
-          setPopupIndex(null)
+          setCollectionId(null)
+          setCollectionIndex(null)
         }
         
       }
@@ -209,41 +258,43 @@ function GrafMap() {
             <div>
               <GrafMarker grafCollection={cluster.properties.collection} 
                           key={cluster.properties.collectionId}
-                          onClick={() => {
-                            onGrafMarkerClick(latitude, longitude);
+                          onClick={(cId,cIn) => {
+                            console.log(cId, cIn);
+                            updateLocation(data[cId].collections[cIn].lat, data[cId].collections[cIn].lng)
+                            updatePopup(cId, cIn);
+                            
                           }}  
-                          onGrafDataChange={onGrafDataChange}
+                          updateData={(cId, cIn)=>updateData(cId, cIn)}
                           collectionId={cluster.properties.collectionId}
-                          selected={cluster.properties.collectionId===popupData}
-                          currentIndex={popupIndex}
+                          collectionIndex={cluster.properties.collectionId===collectionId ? collectionIndex:0}
+                          selected={cluster.properties.collectionId===collectionId && showPopup === true}
+                          onMoreInfoClick = {(lat,lng)=>{onMoreInfoClick(lat,lng); setShowInfo(true)}}
               /> 
             </div>
      
           )
         })}
-        {popupData !== null && 
+        {/* {showPopup !== false ?
           <GrafPopup 
-            data={data[popupData]} 
-            index={popupIndex} 
-            onGrafDataChange={onGrafDataChange} 
+            data={data[collectionId]} 
+            index={collectionIndex} 
+            updateData={(cId, cIn)=>updateData(cId, cIn)}
             onMoreInfoClick={onMoreInfoClick}
             launchInfoModal={()=>{setShowInfo(true);}}>
 
-          </GrafPopup>
+          </GrafPopup>: null
         
-        }
+        } */}
 
-        {(showInfo !== false) && (popupData !== null) &&
+        {(showInfo !== false)  &&
            <InfoModal 
-              grafData={data[popupData].collections[popupIndex]} 
+              grafData={data[collectionId].collections[collectionIndex]} 
               show={showInfo} 
-              collectionId={popupData}
-              index={popupIndex} 
-              onHide={()=>{setShowInfo(false); onGrafDataChange(null,null)}}
-              onGrafMarkerClick={onGrafMarkerClick}
-              onGrafDataChange={onGrafDataChange}
-              onMoreInfoClick = {(cId, cIn) => {onMoreInfoClick(cId, cIn);setTimeout(()=>{setShowInfo(true);}, 1000); }}
+              collectionId={collectionId}
+              index={collectionIndex} 
+              onHide={()=>{setShowInfo(false);}}
               artistWork = {artistWork}
+              onInfoMarkerClick={onInfoMarkerClick}
               
               />
               }

@@ -6,6 +6,9 @@
     border:none;
     
 }
+.mapboxgl-popup{
+    z-index: 51;
+}
 
 .cardImg{
     width:auto;

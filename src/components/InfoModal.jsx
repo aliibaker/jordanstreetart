@@ -12,11 +12,8 @@ import axios from 'axios'
 const InfoModal = ({grafData, 
                     show, 
                     onHide, 
-                    onGrafMarkerClick, 
-                    onGrafDataChange, 
-                    openInfo, 
-                    onMoreInfoClick, 
-                    artistWork}) => {
+                    artistWork,
+                    onInfoMarkerClick}) => {
     const [loaded, setLoaded] = useState(false);
 
 
@@ -50,9 +47,7 @@ const InfoModal = ({grafData,
                           src={`/hd_images/${dt.data[0].filename}`} 
                           onClick={()=> {
                             console.log(dt.data[0].collectionid, dt.data[0].collection_index);
-                            onGrafMarkerClick(dt.data[0].lat, dt.data[0].lng); 
-                            onGrafDataChange(dt.data[0].collectionid, dt.data[0].collection_index);
-                            onMoreInfoClick(dt.data[0].collectionid, dt.data[0].collection_index);
+                            onInfoMarkerClick(dt.data[0].collectionid, dt.data[0].collection_index);
                            }}/>)
                       }
       
