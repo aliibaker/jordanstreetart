@@ -43,11 +43,6 @@ function GrafMap() {
     setShowPopup(true);
   }
 
-  // const updateInfoModal = (cId, cIn) =>{
-  
-  // }
-
-
   //map base configuration
   const[viewport, setViewport] = useState({
       latitude: 31.963198,
@@ -91,36 +86,10 @@ function GrafMap() {
 
   }
   
-  //if a user clicks a marker, it takes it to the new location in 1000ms, closes the infomodal 
-  // const onGrafMarkerClick = (latitude, longitude) =>{
-  //   setShowPopup(false);
-  //   setViewport({
-  //     ...viewport,
-  //     latitude,
-  //     longitude,
-  //     zoom: 20,
-  //     transitionInterpolator: new FlyToInterpolator({ speed: 1}),
-  //     transitionDuration: 1000
-  //   });
-  //   setTransitioning(true);
-  //   setTimeout(()=>{
-  //     setTransitioning(false);
 
-  //   },1200);
-  //   setShowPopup(true);
-  //   setShowInfo(false);
-  // }
-  //function which when called changes the current data being viewed 
 
   
-
-  // const hidePopup = () =>{
-  //   setShowPopup(false);
-  //   onGrafDataChange(null, null);
-  // }
-
-  //when the more info button is clicked, data is fetched to store the artist's other work to be passed into the infomodal component 
-
+  //when a marker from the info modal is clicked, the location on the map is updated, popup for new data is opened, and then the info modal shows for new data
   const onInfoMarkerClick = (cId, cIn) =>{
     setShowInfo(false);
     setTimeout(()=>{setShowInfo(true)}, 1000)
@@ -131,6 +100,7 @@ function GrafMap() {
     console.log(cId, cIn)
   }
 
+  //when the more info button is clicked, data is fetched to store the artist's other work to be passed into the infomodal component 
   const onMoreInfoClick = async (cId, cIn) => {
     setArtistWork([]);
     const artists = data[cId].collections[cIn].artists;
@@ -274,17 +244,6 @@ function GrafMap() {
      
           )
         })}
-        {/* {showPopup !== false ?
-          <GrafPopup 
-            data={data[collectionId]} 
-            index={collectionIndex} 
-            updateData={(cId, cIn)=>updateData(cId, cIn)}
-            onMoreInfoClick={onMoreInfoClick}
-            launchInfoModal={()=>{setShowInfo(true);}}>
-
-          </GrafPopup>: null
-        
-        } */}
 
         {(showInfo !== false)  &&
            <InfoModal 

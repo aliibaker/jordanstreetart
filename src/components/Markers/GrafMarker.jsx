@@ -1,20 +1,11 @@
 import * as React from 'react';
 import {useState, useEffect} from 'react';
-import Card from 'react-bootstrap/Card'
-import Carousel from 'react-bootstrap/Carousel'
-import {Marker, Popup, FlyToInterpolator} from 'react-map-gl';
+import {Marker} from 'react-map-gl';
 import GrafPopup from '../GrafPopup'
 
 import './GrafMarker.css'
-import {LazyLoadImage} from 'react-lazy-load-image-component'
 
-// const Image = React.memo(function Image({ src, onClick }){
-//     return <LazyLoadImage
-//      src={src}
-//      className="grafImage"
-//      onClick={onClick}>
-//         </LazyLoadImage>;
-// });
+
 
 
 const GrafMarker = ({grafCollection, collectionId, collectionIndex, onClick, selected, updateData, onMoreInfoClick}) =>{

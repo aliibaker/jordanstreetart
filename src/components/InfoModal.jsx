@@ -1,12 +1,9 @@
 import Modal from 'react-bootstrap/Modal'
 import Button from 'react-bootstrap/Button'
-import Spinner from 'react-bootstrap/Spinner'
 import * as React from 'react'
 import {useState, useEffect} from 'react'
 
 import './InfoModal.css'
-
-import axios from 'axios'
 
 
 const InfoModal = ({grafData, 
@@ -43,8 +40,8 @@ const InfoModal = ({grafData,
                     {work[0].length !== 1 ? work[0].map((dt)=>{
                       if(dt.data[0].id !== grafData.id){
                         return(<img 
-                          alt={`/hd_images/${dt.data[0].filename}`}
-                          src={`/hd_images/${dt.data[0].filename}`} 
+                          alt={`/images/${dt.data[0].filename}`}
+                          src={`/images/${dt.data[0].filename}`} 
                           onClick={()=> {
                             console.log(dt.data[0].collectionid, dt.data[0].collection_index);
                             onInfoMarkerClick(dt.data[0].collectionid, dt.data[0].collection_index);
