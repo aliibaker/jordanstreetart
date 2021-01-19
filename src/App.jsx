@@ -1,9 +1,10 @@
-import GrafMap from './components/GrafMap'
-import Menubar from './components/Menubar'
+import GrafMap from './components/GrafMap';
+import Menubar from './components/Menubar';
 
-import CookieModal from './components/CookieModal'
-import AboutModal from './components/AboutModal'
-import TourModal from './components/TourModal'
+import CookieModal from './components/Modals/CookieModal';
+import AboutModal from './components/Modals/AboutModal';
+import TourModal from './components/Modals/TourModal';
+import TutorialModal from './components/Modals/TutorialModal';
 
 import {useState} from 'react';
 

@@ -20,7 +20,7 @@ const AboutModal = ({show, handleClose}) =>{
             <p>Jordan Street Art is an open source web application which documents the graffiti and murals of Jordan on a virtual map.
             This project was founded and programmed by Ali Baker with the help of the street art community. 
             Check out the code on <a href ="https://github.com/bakesbasha/jordanstreetart" target="_blank">Github!</a> </p>
-            <h4>Changelog V1.1</h4>
+            <h4>Changelog V2.0</h4>
             <hr></hr>
             <ul>
                 <li>Added clusters which group nearby data points near each other.</li>
@@ -36,6 +36,7 @@ const AboutModal = ({show, handleClose}) =>{
                 <li>Allow for user posting.</li>
                 <li>Development of a native iOS application.</li>
             </ul>
+           
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>

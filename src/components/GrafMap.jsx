@@ -7,8 +7,7 @@ import MapGL, {Marker, FlyToInterpolator, Popup} from 'react-map-gl';
 import GrafMarker from './Markers/GrafMarker'
 import GrafPopup from './GrafPopup'
 import useSupercluster from 'use-supercluster';
-import InfoModal from './InfoModal';
-import ArtistProfile from './ArtistProfile';
+import InfoModal from './Modals/InfoModal';
 
 
 import axios from 'axios';

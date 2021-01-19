@@ -74,12 +74,14 @@ const InfoModal = ({grafData,
         aria-labelledby="contained-modal-title-vcenter"
         centered
       >
-        <Modal.Header>
+        <Modal.Header closeButton>
           <Modal.Title id="contained-modal-title-vcenter">
-            Unknown title 
+            Unknown Title 
           </Modal.Title>
-          <p className="d-flex justify-content-end id-box" >ID: {grafData.id}</p>
+          
+          
         </Modal.Header>
+        <span className="id-box" >ID: {grafData.id}</span>
         <Modal.Body className ="infomodal-body">
           <div className="d-flex justify-content-center">
             <img src={`/hd_images/${grafData.filename}`} onLoad={()=>setLoaded}/>

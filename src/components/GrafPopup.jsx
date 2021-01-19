@@ -21,7 +21,9 @@ const GrafPopup = ({data, index, onCarouselClick, onMoreInfoClick}) =>{
         onCarouselClick(selectedIndex)
     }
 
-    //this is some weird hack ive done to fix an annoying bug 
+    //this is some weird hack ive done to fix an annoying bug
+    
+    //TODO: rework this piece of shit code 
 
     const renderArtists = () =>{
         if(data[activeIndex].artists === undefined){
