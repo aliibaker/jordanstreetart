@@ -1,0 +1,38 @@
+#!/bin/bash
+# insta485install
+set -Eeuo pipefail
+
+Color_Off='\033[0m'
+
+BCyan='\033[1;36m'
+BPurple='\033[1;35m'
+BBlue='\033[1;34m'
+
+
+echo -e "${BCyan} Setting up virtual environment...${Color_Off}"
+python3 -m venv env
+set +u
+echo -e "${BCyan} Activating virtual environment...${Color_Off}"
+source env/bin/activate
+set -u
+echo -e "${BCyan} Installing frontend requirements...${Color_Off}"
+yarn install 
+
+echo -e "${BCyan} Installing backend requirements...${Color_Off}"
+
+pip install -r requirements.txt
+
+echo -e "${BCyan} Setting up database... (NOTE: THIS MIGHT TAKE A WHILE, BE PATIENT) ${Color_Off}" 
+bin/mawahebdb create
+
+
+
+echo -e "JORDAN STREET ART INSTALLED // Run the frontend server by running ${BCyan} yarn start ${Color_Off} // Run the backend server by running ${BCyan} flask run ${Color_Off}"
+
+echo -e "${BCyan}########     ###    ##    ## ########  ######  ########     ###     ######  ##     ##    ###    
+##     ##   ## ##   ##   ##  ##       ##    ## ##     ##   ## ##   ##    ## ##     ##   ## ##   
+##     ##  ##   ##  ##  ##   ##       ##       ##     ##  ##   ##  ##       ##     ##  ##   ##  
+########  ##     ## #####    ######    ######  ########  ##     ##  ######  ######### ##     ## 
+##     ## ######### ##  ##   ##             ## ##     ## #########       ## ##     ## ######### 
+##     ## ##     ## ##   ##  ##       ##    ## ##     ## ##     ## ##    ## ##     ## ##     ## 
+########  ##     ## ##    ## ########  ######  ########  ##     ##  ######  ##     ## ##     ##" 

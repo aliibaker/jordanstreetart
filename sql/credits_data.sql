@@ -50,5 +50,5 @@ INSERT INTO credits(id, graffiti_id, artist_id) VALUES(49, 112, 18);
 INSERT INTO credits(id, graffiti_id, artist_id) VALUES(50, 111, 17);
 INSERT INTO credits(id, graffiti_id, artist_id) VALUES(51, 110, 4);
 INSERT INTO credits(id, graffiti_id, artist_id) VALUES(52, 107, 25);
-INSERT INTO credits(id, graffiti_id, artist_id) VALUES(52, 109, 25);
-INSERT INTO credits(id, graffiti_id, artist_id) VALUES(52, 2, 25);
+INSERT INTO credits(id, graffiti_id, artist_id) VALUES(53, 109, 25);
+INSERT INTO credits(id, graffiti_id, artist_id) VALUES(54, 2, 25);
