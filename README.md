@@ -44,3 +44,7 @@ To run the website, you need to run both the frontend server and backend server.
 
 Note: This is where I setup the frontend server by default, the backend server can be reached at localhost:5000. 
 
+###LICENSE 
+
+Distributed under the GNU General Public License v3.0. See LICENSE for more information.
+
