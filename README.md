@@ -44,7 +44,7 @@ MacOS (with brew installed):
 You will need to setup a virtual environment for this project. The following steps below will walk you through how to install virtual environments for python.Make sure you have [pip](https://pip.pypa.io/en/stable/installing/) installed first. 
 
 
-'sudo pip3 install virtualenv'
+`sudo pip3 install virtualenv`
 
 ## Automatic Setup 
 
