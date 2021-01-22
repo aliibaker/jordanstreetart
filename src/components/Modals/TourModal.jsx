@@ -15,7 +15,7 @@ const TourModal = ({show, handleClose}) => {
             <img src="underground.jpg" style={{maxWidth:"100%", height:"auto"}}></img>
             <p>Underground Amman Street Tour is a tour which explores some of Amman's neighborhoods and their relationship with urban art. 
                If you want to learn more about the street art scene in Amman, we would heavily recommend taking their tour. 
-               Contact them on Facebook or Instagram for information regarding their tours.
+               Contact them on Facebook or Instagram for information regarding their tours. Also be sure to check out <a href="www.talesofjordan.com">Tales of Jordan</a> 
             </p>
 
             

@@ -98,7 +98,7 @@ const InfoModal = ({grafData,
           <div className ="">
             <Button className= "mr-auto p-2" variant="outline-success" href={`https://www.google.com/maps/search/?api=1&query=${grafData.lat},${grafData.lng}`}target='_blank'><i className="fa fa-map-marker" aria-hidden="true"></i> Location</Button>
           </div>
-          <Button className= "mr-auto p-2" href="https://forms.gle/ketR1mdgmABQoa2S6" target="_blank" variant="outline-warning"><i className="fas fa-exclamation-triangle"></i> Report an Issue</Button>
+          <Button className= "mr-auto p-2" href="https://forms.gle/sknMF3YeiVanmFRd8" target="_blank" variant="outline-warning"><i className="fas fa-exclamation-triangle"></i> Report an Issue</Button>
           <Button className= "" onClick={onHide} variant='outline-primary'>Close</Button>
 
         </Modal.Footer>
