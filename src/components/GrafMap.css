@@ -65,6 +65,14 @@
     z-index: 50;
 }
 
+.bottomLeftButtons{
+    position: absolute;
+    bottom: 8px;
+    left: 16px;
+    z-index: 50;
+}
+
+
 .btn-primary {
     color: #fff;
     background-color: #800020 !important;
@@ -75,6 +83,5 @@
     width: 30px;
     margin: 80px 0 0 10px;
     right: 8px;
-
 }
 

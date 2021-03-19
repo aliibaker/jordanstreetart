@@ -111,6 +111,16 @@ function GrafMap() {
     }, 1200)
 
   }
+
+  const chooseRandomMarker = () =>{
+    // updateLocation(data[cId].collections[cIn].lat, data[cId].collections[cIn].lng)
+    // updatePopup(cId, cIn);
+    let cId = Math.floor(Math.random()*data.length)
+    let cIn = Math.floor(Math.random()*data[cId].collections.length)
+    console.log(cId, cIn)
+    updateLocation(data[cId].collections[cIn].lat, data[cId].collections[cIn].lng)
+    updatePopup(cId, cIn);
+  }
   
   //when a marker from the info modal is clicked, the location on the map is updated, popup for new data is opened, and then the info modal shows for new data
   const onInfoMarkerClick = (cId, cIn) =>{
@@ -270,6 +280,10 @@ function GrafMap() {
       </ButtonGroup>
   )
 
+  const randomButton = (
+      <Button onClick={()=>{chooseRandomMarker()}}>Random</Button>
+  )
+
 
 
   return (
@@ -312,6 +326,9 @@ function GrafMap() {
     </div>
       <div className={"bottomRightButtons"}>
         {buttonOptions}
+      </div>
+      <div className={"bottomLeftButtons"}>
+        {randomButton}
       </div>
 
     </>

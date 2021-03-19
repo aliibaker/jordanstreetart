@@ -1,10 +1,12 @@
 import mawaheb
 from flask import request, jsonify
 from collections import defaultdict
+import random
 
 db = mawaheb.db
 
 graffiti_directory = defaultdict((lambda:{}))
+
 
 @mawaheb.app.route('/')
 def index():
@@ -33,17 +35,6 @@ def get_graffiti():
     graffiti_collections = defaultdict(lambda: [], graffiti_collections)
     final_collection = []
 
-    
-
-    # final_collection = defaultdict(lambda: [], final_collection)
-
-    # artist_test = mawaheb.Artist.query.filter_by(id=2).all()
-    # artist = mawaheb.artists_schema.dump(artist_test)
-
-    # join_test = db.session.query(mawaheb.Credits, mawaheb.Graffiti, mawaheb.Artist).join(mawaheb.Graffiti).join(mawaheb.Artist).all()
-    # print(join_test)
-
-
     # grouping graffiti near each other together
     for data in result:
         loc = (data['lat'], data['lng'])
@@ -56,14 +47,6 @@ def get_graffiti():
             if 'artists' not in data:
                 data['artists'] = []
             data['artists'].append(artist_result)
-
-
- 
-        # if len(creds_query) != 0:
-        #     for entry in graf_creds:
-        #         artist_query = mawaheb.Artist.query.filter_by(id=entry['artist_id']).all()
-        #         artist_info = mawaheb.artists_schema.dump(artist_query)
-        #         data['artists'] = artist_info
 
 
         graffiti_collections[loc].append(data)
@@ -98,3 +81,12 @@ def get_graffiti_data():
         return jsonify(graffiti_results)
     else:
         return 'Directory not loaded, please load the website first before requesting data about the art', 400
+
+# @mawaheb.app.route('/api/graffiti_random')
+# def get_random_data():
+#     if(len(graffiti_directory) != 0):
+#         rand_int_collection = random.int(0, len(graffiti_directory)-1)
+#         rand_int_id = random.int(0, len(graffiti_directory[f'{rand_int_collection}']['collection_index']))
+#         pass
+#     else:
+#         return 'Directory not loaded, please load the website first before requesting data about the art', 400
