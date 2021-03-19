@@ -261,7 +261,7 @@ function GrafMap() {
   const buttonOptions = (
       <ButtonGroup>
           <DropdownButton as={ButtonGroup} title="Amman" id="bg-nested-dropdown">
-            <Dropdown.Item eventKey="1" onClick={()=>{updateBaseLocation(31.956414,35.922864, 14.7)}}>Luweibdeh/Jabal Amman</Dropdown.Item>
+            <Dropdown.Item eventKey="1" onClick={()=>{updateBaseLocation(31.9548167,35.9244115, 14)}}>Luweibdeh/Jabal Amman</Dropdown.Item>
             <Dropdown.Item eventKey="2" onClick={()=>{updateBaseLocation(31.9583329,35.8662133, 15.5)}}>Swefieh</Dropdown.Item>
             <Dropdown.Item eventKey="3" onClick={()=>{updateBaseLocation(31.9734829,35.9617931, 16)}}>AlHashmi</Dropdown.Item>
             <Dropdown.Item eventKey="4" onClick={()=>{updateBaseLocation(31.887391,35.855746, 14)}}>Marj Al Hamam</Dropdown.Item>
