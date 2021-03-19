@@ -58,4 +58,23 @@
   background-color: rgb(43, 38, 38);
 }
 
+.bottomRightButtons{
+    position: absolute;
+    bottom: 8px;
+    right: 16px;
+    z-index: 50;
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: #800020 !important;
+    border-color: #800020 !important;
+}
+
+.mapboxgl-ctrl-group {
+    width: 30px;
+    margin: 80px 0 0 10px;
+    right: 8px;
+
+}
 

@@ -33,7 +33,7 @@ const GrafPopup = ({data, index, onCarouselClick, onMoreInfoClick}) =>{
             if(data[activeIndex].artists.length > 1){
                 return(<Card.Text className="artist-text"><span>Artists: </span>
                         {data[activeIndex].artists.map((artist) => (
-                            <Card.Link key={artist.id} className="" href={`${artist.link}`} target="_blank" >{artist.name}</Card.Link>
+                            <Card.Link key={artist.id} className="" href={artist.link !== 'none' ? `${artist.link}`:null} target="_blank" >{artist.name}</Card.Link>
                         ))}
                         </Card.Text>);
             }

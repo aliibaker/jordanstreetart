@@ -19,7 +19,7 @@ const InfoModal = ({grafData,
       if(grafData.artists !== undefined){
         if(grafData.artists.length > 1){
           const artistData = grafData.artists.map(dt =>(
-            <span key={dt.id}><Button variant="link" href={`${dt.link}`} target="_blank">{dt.name}</Button></span>
+            <span key={dt.id}><Button variant="link" href={dt.link !== 'none' ? `${dt.link}`: null} target="_blank">{dt.name}</Button></span>
           ))
 
           return(<h5>Artists: {artistData}</h5>)

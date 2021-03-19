@@ -20,6 +20,7 @@
     -webkit-border-radius:50%;
     padding: 0;
     cursor: pointer;
+    z-index: 3;
 } 
 
 

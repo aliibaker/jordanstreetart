@@ -1,4 +1,5 @@
 import GrafMap from './components/GrafMap';
+import Consumer from './components/GrafMap'
 import Menubar from './components/Menubar';
 
 import CookieModal from './components/Modals/CookieModal';
@@ -21,7 +22,7 @@ function App() {
         <Menubar showAbout={()=>setShowAbout(true)} showTour={()=>setShowTour(true)}/>
       </div>
       <div id = "map">
-        <GrafMap/>
+        <Consumer/>
       </div>
 
       {showAbout === true ? <AboutModal show={showAbout} handleClose={()=>setShowAbout(false)}/>:null}

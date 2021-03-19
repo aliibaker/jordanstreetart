@@ -3,6 +3,7 @@ import {useState, useEffect} from 'react';
 import {Marker} from 'react-map-gl';
 import GrafPopup from '../GrafPopup'
 
+
 import './GrafMarker.css'
 
 
@@ -12,6 +13,7 @@ const GrafMarker = ({grafCollection, collectionId, collectionIndex, onClick, sel
     const[index, setIndex] = useState(collectionIndex);
     const[data, setData] = useState(grafCollection[index]);
 
+    const context = React.useContext
     const onCarouselClick = (newIndex) =>{
         setIndex(newIndex);
         updateData(collectionId, newIndex);
@@ -47,18 +49,20 @@ const GrafMarker = ({grafCollection, collectionId, collectionIndex, onClick, sel
 
     })
 
+
+
     return(
         <div>
             {data &&
-                <Marker 
-                    key={collectionId} 
-                    latitude={data.lat} 
-                    longitude={data.lng} 
+                <Marker
+                    key={collectionId}
+                    latitude={data.lat}
+                    longitude={data.lng}
                     anchor="bottom"
                     >
-                    <img 
+                    <img
                         className="grafImage"
-                        src={`/images/${data.filename}`} 
+                        src={`/images/${data.filename}`}
                         onClick={(e)=>{onClick(collectionId, index); e.preventDefault();}}
                         alt={`/images/${data.filename}`}
                     ></img>

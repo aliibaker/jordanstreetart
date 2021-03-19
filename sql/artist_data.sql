@@ -26,3 +26,5 @@ INSERT INTO artist(id, name, link) VALUES(24, "Ibrahim Tonnerieux", "https://www
 INSERT INTO artist(id, name, link) VALUES(25, "Sardine", "https://www.instagram.com/mikevderderian/");
 INSERT INTO artist(id, name, link) VALUES(26, "Moke", "https://www.instagram.com/infernomoke/");
 INSERT INTO artist(id, name, link) VALUES(27, "Tarsila Schubert", "https://www.instagram.com/tarsilaschubert/");
+INSERT INTO artist(id, name, link) VALUES(28, "Dalal Mitwally", "none");
+INSERT INTO artist(id, name, link) VALUES(29, "Laila Ajjawi", "https://www.instagram.com/laila.ajjawi/");

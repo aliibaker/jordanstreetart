@@ -1,16 +1,22 @@
 import * as React from 'react';
-import { useState, useEffect, useRef} from 'react';
+import {useState, useEffect, useRef} from 'react';
 import './GrafMap.css'
 
-import MapGL, {Marker, FlyToInterpolator, Popup} from 'react-map-gl';
+import MapGL, {Marker, FlyToInterpolator, Popup, NavigationControl} from 'react-map-gl';
 
 import GrafMarker from './Markers/GrafMarker'
 import GrafPopup from './GrafPopup'
 import useSupercluster from 'use-supercluster';
 import InfoModal from './Modals/InfoModal';
 
+import ButtonGroup from 'react-bootstrap/ButtonGroup';
+import Button from 'react-bootstrap/Button';
+import DropdownButton from 'react-bootstrap/DropdownButton'
+import Dropdown from 'react-bootstrap/Dropdown'
+
 
 import axios from 'axios';
+
 
 
 
@@ -29,6 +35,8 @@ function GrafMap() {
   const[artistWork, setArtistWork] = useState([]);
   //show popup state
   const [showPopup, setShowPopup] = useState(false);
+  //radius
+  const [radius, setRadius] = useState(40);
 
 
   const updateData = (cId, cIn) =>{
@@ -68,6 +76,25 @@ function GrafMap() {
     return(()=> {window.removeEventListener("mousedown", listener)})
   }, [])
 
+  const updateBaseLocation = (lat,lng, zoom) =>{
+    setViewport({
+      ...viewport,
+      latitude: lat,
+      longitude: lng,
+      zoom: zoom,
+      transitionInterpolator: new FlyToInterpolator({speed: 1}),
+      transitionDuration: 1000
+    });
+    setTransitioning(true);
+    setTimeout(()=>{
+      setTransitioning(false);
+    }, 1200)
+    setCollectionId(null)
+    setCollectionIndex(null)
+    setShowPopup(false)
+
+
+  }
 
   const updateLocation = (lat, lng) =>{
     setViewport({
@@ -84,9 +111,6 @@ function GrafMap() {
     }, 1200)
 
   }
-  
-
-
   
   //when a marker from the info modal is clicked, the location on the map is updated, popup for new data is opened, and then the info modal shows for new data
   const onInfoMarkerClick = (cId, cIn) =>{
@@ -149,7 +173,7 @@ function GrafMap() {
     points,
     zoom: viewport.zoom,
     bounds: bounds,
-    options: {radius: 46, maxZoom: 20}
+    options: {radius: radius, maxZoom: 20}
   })
 
   useEffect(() =>{
@@ -169,8 +193,82 @@ function GrafMap() {
         
       }
 
+      setRadius(4500/Math.pow(viewport.zoom, 2))
+
   }, [clusters])
 
+  const GrafMarkers = clusters.map(cluster => {
+      const [longitude, latitude] = cluster.geometry.coordinates;
+      const {
+        cluster: isCluster,
+        point_count: pointCount
+      } = cluster.properties
+      //check if the data is a cluster, if it is render a ClusterMarker
+      if (isCluster) {
+        return (
+            <Marker key={cluster.id} latitude={latitude} longitude={longitude}>
+              <div className="cluster-marker"
+                   key={cluster.id}
+                   style={{
+                     width: `${75 + pointCount / points.length * 30}px`,
+                     height: `${75 + pointCount / points.length * 30}px`
+                   }}
+                   onClick={(e) => {
+                     const expansionZoom = Math.min(supercluster.getClusterExpansionZoom(cluster.id), 20);
+                     setViewport({
+                       ...viewport,
+                       latitude,
+                       longitude,
+                       zoom: expansionZoom,
+                       transitionInterpolator: new FlyToInterpolator({speed: 2}),
+                       transitionDuration: "auto"
+                     });
+                     e.preventDefault();
+
+                   }}>
+                {pointCount}
+              </div>
+            </Marker>
+        )
+
+      }
+      //else return a GrafMarker
+      return (
+
+          <div>
+            <GrafMarker grafCollection={cluster.properties.collection}
+                        key={cluster.properties.collectionId}
+                        onClick={(cId, cIn) => {
+                          console.log(cId, cIn);
+                          updateLocation(data[cId].collections[cIn].lat, data[cId].collections[cIn].lng)
+                          updatePopup(cId, cIn);
+
+                        }}
+                        updateData={(cId, cIn) => updateData(cId, cIn)}
+                        collectionId={cluster.properties.collectionId}
+                        collectionIndex={cluster.properties.collectionId === collectionId ? collectionIndex : 0}
+                        selected={cluster.properties.collectionId === collectionId && showPopup === true}
+                        onMoreInfoClick={(lat, lng) => {
+                          onMoreInfoClick(lat, lng);
+                          setShowInfo(true)
+                        }}
+            />
+          </div>
+
+      )
+    })
+
+  const buttonOptions = (
+      <ButtonGroup>
+          <DropdownButton as={ButtonGroup} title="Amman" id="bg-nested-dropdown">
+            <Dropdown.Item eventKey="1" onClick={()=>{updateBaseLocation(31.956414,35.922864, 14.7)}}>Luweibdeh/Jabal Amman</Dropdown.Item>
+            <Dropdown.Item eventKey="2" onClick={()=>{updateBaseLocation(31.9583329,35.8662133, 15.5)}}>Swefieh</Dropdown.Item>
+            <Dropdown.Item eventKey="3" onClick={()=>{updateBaseLocation(31.9734829,35.9617931, 16)}}>AlHashmi</Dropdown.Item>
+            <Dropdown.Item eventKey="4" onClick={()=>{updateBaseLocation(31.887391,35.855746, 14)}}>Marj Al Hamam</Dropdown.Item>
+          </DropdownButton>
+          <Button onClick={()=>{updateBaseLocation(32.555171, 35.860350, 16)}}>Irbid</Button>
+      </ButtonGroup>
+  )
 
 
 
@@ -184,65 +282,11 @@ function GrafMap() {
         mapStyle="mapbox://styles/aliibakes/ckjpw30p454tr19qsdypr1vyq"
         onViewportChange={nextViewport => setViewport(nextViewport)}
         mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
-        transitionDUration={1000}
         minZoom={10}
         ref = {mapRef}
       >
-        {clusters && clusters.map(cluster => {
-          const[longitude, latitude] = cluster.geometry.coordinates;
-          const{cluster: isCluster, 
-                point_count: pointCount
-          } = cluster.properties
 
-          //check if the data is a cluster, if it is render a ClusterMarker
-          if(isCluster){
-            return(
-              <Marker key={cluster.id} latitude={latitude} longitude={longitude}>
-                <div className="cluster-marker" 
-                      key={cluster.id}
-                      style={{width: `${75 + pointCount/points.length*30}px`,
-                              height: `${75 + pointCount/points.length*30}px`}}
-                      onClick={(e) => {
-                        const expansionZoom = Math.min(supercluster.getClusterExpansionZoom(cluster.id), 20);
-                        setViewport({
-                          ...viewport,
-                          latitude,
-                          longitude,
-                          zoom: expansionZoom,
-                          transitionInterpolator: new FlyToInterpolator({ speed: 2}),
-                          transitionDuration: "auto"
-                        });
-                        e.preventDefault();
-
-                      }}                                 >
-                {pointCount}
-                </div>
-              </Marker>
-            )
-
-          }
-          //else return a GrafMarker
-          return(
-  
-            <div>
-              <GrafMarker grafCollection={cluster.properties.collection} 
-                          key={cluster.properties.collectionId}
-                          onClick={(cId,cIn) => {
-                            console.log(cId, cIn);
-                            updateLocation(data[cId].collections[cIn].lat, data[cId].collections[cIn].lng)
-                            updatePopup(cId, cIn);
-                            
-                          }}  
-                          updateData={(cId, cIn)=>updateData(cId, cIn)}
-                          collectionId={cluster.properties.collectionId}
-                          collectionIndex={cluster.properties.collectionId===collectionId ? collectionIndex:0}
-                          selected={cluster.properties.collectionId===collectionId && showPopup === true}
-                          onMoreInfoClick = {(lat,lng)=>{onMoreInfoClick(lat,lng); setShowInfo(true)}}
-              /> 
-            </div>
-     
-          )
-        })}
+        {GrafMarkers}
 
         {(showInfo !== false)  &&
            <InfoModal 
@@ -256,11 +300,20 @@ function GrafMap() {
               
               />
               }
-              
-        
+              <div style = {{right:8}}>
+                <NavigationControl showCompass={false}>
+
+                </NavigationControl>
+              </div>
+
       </MapGL>
 
+
     </div>
+      <div className={"bottomRightButtons"}>
+        {buttonOptions}
+      </div>
+
     </>
       
 

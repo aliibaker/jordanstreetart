@@ -128,3 +128,6 @@ INSERT INTO graffiti(id, filename,  lat, lng) VALUES (126, 'graf_126.jpg', 31.97
 INSERT INTO graffiti(id, filename,  lat, lng) VALUES (127, 'graf_127.jpg', 31.9743093, 35.9605074);
 INSERT INTO graffiti(id, filename,  lat, lng) VALUES (128, 'graf_128.jpg', 31.9734829, 35.9617931);
 INSERT INTO graffiti(id, filename,  lat, lng) VALUES (129, 'graf_129.jpg', 31.9703176, 35.8835323);
+INSERT INTO graffiti(id, filename,  lat, lng) VALUES (130, 'graf_130.jpg', 32.555171, 35.860350);
+INSERT INTO graffiti(id, filename,  lat, lng) VALUES (131, 'graf_131.jpg', 32.554672, 35.860247);
+INSERT INTO graffiti(id, filename,  lat, lng) VALUES (132, 'graf_132.jpg', 31.950651, 35.943031);
