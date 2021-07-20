@@ -4,16 +4,35 @@ import * as React from 'react'
 import {useState, useEffect} from 'react'
 
 import './InfoModal.css'
-
-
+import axios from 'axios'
 const InfoModal = ({grafData, 
                     show, 
-                    onHide, 
-                    artistWork,
+                    onHide,
                     onInfoMarkerClick}) => {
     const [loaded, setLoaded] = useState(false);
+    const [artistWork, setArtistWork] = useState([])
 
+    const loadArtistData = async () =>{
+        let artistWorkTemp = []
+        const artists = grafData.artists;
+        if(artists !== undefined){
+            for (const artist of artists) {
+                let index = artists.indexOf(artist);
+                let artistArray = []
+                let artistData = await axios.get(`/api/creds?artist_id=${artist.id}`);
+                for (const data of artistData.data) {
+                    let grafData = await axios.get(`/api/graffiti_query?graffiti_id=${data.graffiti_id}`)
+                    artistArray.push(grafData.data)
+                }
+                artistWorkTemp.push(artistArray)
+            }
+            setArtistWork(artistWorkTemp);
+        }
+    }
 
+    useEffect(() =>{
+        loadArtistData()
+    }, [grafData])
 
     const renderArtists = () =>{
       if(grafData.artists !== undefined){
@@ -29,6 +48,16 @@ const InfoModal = ({grafData,
 
       return <h5>Artist: Unknown</h5>
     }
+
+    // const renderArtistWorkNew = () =>{
+    //     let artistWorkJsx = []
+    //     if(artistWork.length !== 0 ){
+    //         artistWork.forEach((work)=>{
+    //
+    //         })
+    //     }
+    // }
+
     const renderArtistWork = () =>{
       if(artistWork.length !== 0){
         return(
@@ -37,17 +66,18 @@ const InfoModal = ({grafData,
               return(<>
                   <h6>{grafData.artists[index].name}'s work: </h6>
                   <div className="other-works">
-                    {work[0].length !== 1 ? work[0].map((dt)=>{
-                      if(dt.data[0].id !== grafData.id){
-                        return(<img 
-                          alt={`/images/${dt.data[0].filename}`}
-                          src={`/images/${dt.data[0].filename}`} 
+                    {work.length !== 1 ? work.map((dt)=>{
+                        console.log("dt", dt)
+                      if(dt[0].id !== grafData.id){
+                        return(<img
+                          alt={`/images/${dt[0].filename}`}
+                          src={`/images/${dt[0].filename}`}
                           onClick={()=> {
-                            console.log(dt.data[0].collectionid, dt.data[0].collection_index);
-                            onInfoMarkerClick(dt.data[0].collectionid, dt.data[0].collection_index);
+                            console.log(dt.collectionid, dt.collection_index);
+                            onInfoMarkerClick(dt.collectionid, dt.collection_index);
                            }}/>)
                       }
-      
+
                     }): <p>No other work found on site.</p>}
                   </div>
               </>)
@@ -59,10 +89,12 @@ const InfoModal = ({grafData,
     }
   }
 
+  console.log(renderArtistWork())
 
     useEffect(()=>{
-      setTimeout(()=>{setLoaded(true)}, 1000)
-
+        if(artistWork.length !== 0){
+            setLoaded(true)
+        }
     }, [artistWork])
 
     return(<>
@@ -78,8 +110,6 @@ const InfoModal = ({grafData,
           <Modal.Title id="contained-modal-title-vcenter">
             Unknown Title 
           </Modal.Title>
-          
-          
         </Modal.Header>
         <span className="id-box" >ID: {grafData.id}</span>
         <Modal.Body className ="infomodal-body">
@@ -90,9 +120,8 @@ const InfoModal = ({grafData,
         
         <Modal.Body>
            {/* This renders the artists and their work if they have any  */}
-          {renderArtists()} 
-          {grafData.artists !== undefined ? ((loaded === true) ? renderArtistWork(): <div>loading...</div>):null}
-
+          {renderArtists()}
+          {((loaded === true) ? renderArtistWork(): <div>loading...</div>)}
         </Modal.Body>
         <Modal.Footer>
           <div className ="">

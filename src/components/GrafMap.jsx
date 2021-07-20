@@ -14,7 +14,6 @@ import Button from 'react-bootstrap/Button';
 import DropdownButton from 'react-bootstrap/DropdownButton'
 import Dropdown from 'react-bootstrap/Dropdown'
 
-
 import axios from 'axios';
 
 
@@ -37,7 +36,6 @@ function GrafMap() {
   const [showPopup, setShowPopup] = useState(false);
   //radius
   const [radius, setRadius] = useState(40);
-
 
   const updateData = (cId, cIn) =>{
     setCollectionId(cId);
@@ -92,8 +90,6 @@ function GrafMap() {
     setCollectionId(null)
     setCollectionIndex(null)
     setShowPopup(false)
-
-
   }
 
   const updateLocation = (lat, lng) =>{
@@ -109,55 +105,51 @@ function GrafMap() {
     setTimeout(()=>{
       setTransitioning(false);
     }, 1200)
-
   }
 
   const chooseRandomMarker = () =>{
-    // updateLocation(data[cId].collections[cIn].lat, data[cId].collections[cIn].lng)
-    // updatePopup(cId, cIn);
     let cId = Math.floor(Math.random()*data.length)
     let cIn = Math.floor(Math.random()*data[cId].collections.length)
     console.log(cId, cIn)
-    updateLocation(data[cId].collections[cIn].lat, data[cId].collections[cIn].lng)
-    updatePopup(cId, cIn);
+    onInfoMarkerClick(cId, cIn)
   }
   
   //when a marker from the info modal is clicked, the location on the map is updated, popup for new data is opened, and then the info modal shows for new data
   const onInfoMarkerClick = (cId, cIn) =>{
-    setShowInfo(false);
+    setShowInfo(false)
     setTimeout(()=>{setShowInfo(true)}, 1000)
     console.log(data[cId]);
     updateLocation(data[cId].collections[cIn].lat, data[cId].collections[cIn].lng);
     updatePopup(cId, cIn);
-    onMoreInfoClick(cId, cIn);
-    console.log(cId, cIn)
+    // onMoreInfoClick(cId, cIn);
   }
+
 
   //when the more info button is clicked, data is fetched to store the artist's other work to be passed into the infomodal component 
   const onMoreInfoClick = async (cId, cIn) => {
     setArtistWork([]);
     const artists = data[cId].collections[cIn].artists;
     console.log(cId,cIn);
-    //check if the mural has 
+    //check if the mural has any artists
     if(artists !== undefined){
       let artistData = artists.map( async (artist, index)=>{
         let fetchArtistData = await axios.get(`/api/creds?artist_id=${artist.id}`);
         Promise.resolve(fetchArtistData)
         let dataArray = fetchArtistData.data.map(async (dt) => {
           let fetchGrafData = await axios.get(`/api/graffiti_query?graffiti_id=${dt.graffiti_id}`);
-         
+
           return Promise.resolve(fetchGrafData);
         })
         return Promise.all(dataArray);
       })
-  
+
       let tempArr = []
       artistData.forEach((artist, index) =>{
          tempArr.push([])
           artist.then(dt=> {
             tempArr[index].push(dt)
           })
-        
+
       })
       setArtistWork(tempArr);
     }
@@ -174,9 +166,7 @@ function GrafMap() {
     geometry: {type: "Point", coordinates: [graf.collections[0].lng, graf.collections[0].lat]}
   }));
 
-
   const bounds = mapRef.current ? mapRef.current.getMap().getBounds().toArray().flat() : null
-
 
   // get clusters
   const {clusters, supercluster} = useSupercluster({
@@ -240,11 +230,9 @@ function GrafMap() {
               </div>
             </Marker>
         )
-
       }
       //else return a GrafMarker
       return (
-
           <div>
             <GrafMarker grafCollection={cluster.properties.collection}
                         key={cluster.properties.collectionId}
@@ -252,19 +240,17 @@ function GrafMap() {
                           console.log(cId, cIn);
                           updateLocation(data[cId].collections[cIn].lat, data[cId].collections[cIn].lng)
                           updatePopup(cId, cIn);
-
                         }}
                         updateData={(cId, cIn) => updateData(cId, cIn)}
                         collectionId={cluster.properties.collectionId}
                         collectionIndex={cluster.properties.collectionId === collectionId ? collectionIndex : 0}
                         selected={cluster.properties.collectionId === collectionId && showPopup === true}
-                        onMoreInfoClick={(lat, lng) => {
-                          onMoreInfoClick(lat, lng);
+                        onMoreInfoClick={(cId, cIn) => {
+                          onMoreInfoClick(cId, cIn)
                           setShowInfo(true)
                         }}
             />
           </div>
-
       )
     })
 
@@ -308,10 +294,9 @@ function GrafMap() {
               show={showInfo} 
               collectionId={collectionId}
               index={collectionIndex} 
-              onHide={()=>{setShowInfo(false);}}
+              onHide={()=>{setShowInfo(false); setArtistWork([])}}
               artistWork = {artistWork}
               onInfoMarkerClick={onInfoMarkerClick}
-              
               />
               }
               <div style = {{right:8}}>
