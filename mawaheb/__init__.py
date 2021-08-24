@@ -23,11 +23,13 @@ class Graffiti(db.Model):
     title = db.Column(db.String(64), nullable=True)
     lat = db.Column(db.Float, nullable=False)
     lng = db.Column(db.Float, nullable=False)
+    active = db.Column(db.Integer, nullable=False)
 
-    def __init__(self, filename, title, lat, lng):
+    def __init__(self, filename, title, lat, lng, active):
         self.filename = filename
         self.lat = lat
         self.lng = lng
+        self.active = active
 
     def __repr__(self):
         return '<Graffiti %r>' % self.id
@@ -35,7 +37,7 @@ class Graffiti(db.Model):
 # schema
 class GraffitiSchema(ma.Schema):
     class Meta:
-        fields = ('id', 'filename', 'title', 'lat', 'lng')
+        fields = ('id', 'filename', 'title', 'lat', 'lng', 'active')
 
 class Artist(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -68,6 +70,19 @@ class CreditSchema(ma.Schema):
     class Meta:
         fields = ('graffiti_id','artist_id')
 
+class Tagover(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    original_id = db.Column(db.Integer, db.ForeignKey('graffiti.id'))
+    new_id = db.Column(db.Integer, db.ForeignKey('graffiti.id'))
+
+    def __init__(self, origianl_id, new_id):
+        self.original_id = origianl_id
+        self.new_id = new_id
+
+class TagoverSchema(ma.Schema):
+    class Meta:
+        fields = ('original_id','new_id')
+
 # one graffiti
 graffiti_schema = GraffitiSchema()
 
@@ -82,5 +97,8 @@ credit_schema = CreditSchema()
 
 credits_schema = CreditSchema(many=True)
 
+tagover_schema = TagoverSchema()
+
+tagovers_schema = TagoverSchema(many=True)
 
 import mawaheb.api

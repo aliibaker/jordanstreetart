@@ -1,9 +1,6 @@
 .infomodal-body{
     padding:0px;
     height:auto;
-
-
-    
 }
 .infomodal-body img{
     max-width:100%;
@@ -12,6 +9,21 @@
     max-height: -webkit-fill-available;
     
 }
+.artist-button{
+    padding: 0px 4px;
+    font-size: 15px;
+}
+.artist-header{
+    margin-bottom: 4px;
+    display: inline-block;
+    font-size: 16px;
+}
+
+.other-works-header{
+    margin-top: 6px;
+    font-size: 15px;
+}
+
 .modal-dialog{
     max-width: 450px;
 }
@@ -24,6 +36,11 @@
 .id-box{
     background-color: black;
     color:white;
+}
+
+.timeline-button{
+    display: inline-block;
+    float:right;
 }
 
 .other-works img{

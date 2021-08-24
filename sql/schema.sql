@@ -3,7 +3,8 @@ CREATE TABLE graffiti (
     filename VARCHAR(64) NOT NULL,
     title VARCHAR(20),
     lat DOUBLE NOT NULL,
-    lng DOUBLE NOT NULL
+    lng DOUBLE NOT NULL,
+    active INTEGER NOT NULL
 );
 
 CREATE TABLE artist (
@@ -18,8 +19,16 @@ CREATE TABLE credits (
     graffiti_id INTEGER,
     artist_id INTEGER,
     FOREIGN KEY(graffiti_id) REFERENCES graffiti(id),
-    FOREIGN KEY(artist_id) REFERENCES graffiti(id)
+    FOREIGN KEY(artist_id) REFERENCES artist(id)
 
+);
+
+create TABLE tagover(
+    id INTEGER PRIMARY KEY,
+    original_id INTEGER,
+    new_id INTEGER,
+    FOREIGN KEY(original_id) REFERENCES graffiti(id),
+    FOREIGN KEY(new_id) REFERENCES graffiti(id)
 );
 
 PRAGMA foreign_keys = ON;

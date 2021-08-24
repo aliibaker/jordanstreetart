@@ -1,0 +1,12 @@
+INSERT INTO tagover(id, original_id, new_id) VALUES (0, 97, 155);
+INSERT INTO tagover(id, original_id, new_id) VALUES (1, 100, 152);
+INSERT INTO tagover(id, original_id, new_id) VALUES (2, 101, 151);
+INSERT INTO tagover(id, original_id, new_id) VALUES (3, 102, 150);
+INSERT INTO tagover(id, original_id, new_id) VALUES (4, 104, 149);
+INSERT INTO tagover(id, original_id, new_id) VALUES (5, 78, 166);
+INSERT INTO tagover(id, original_id, new_id) VALUES (6, 79, 141);
+INSERT INTO tagover(id, original_id, new_id) VALUES (7, 80, 142);
+INSERT INTO tagover(id, original_id, new_id) VALUES (9, 83, 145);
+INSERT INTO tagover(id, original_id, new_id) VALUES (10, 83, 163);
+INSERT INTO tagover(id, original_id, new_id) VALUES (11, 85, 164);
+INSERT INTO tagover(id, original_id, new_id) VALUES (12, 88, 139);

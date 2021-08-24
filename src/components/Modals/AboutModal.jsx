@@ -20,11 +20,11 @@ const AboutModal = ({show, handleClose}) =>{
             <p>Jordan Street Art is an open source web application which documents the graffiti and murals of Jordan on a virtual map.
             This project was founded and programmed by Ali Baker with the help of the street art community. 
             Check out the code on <a href ="https://github.com/bakesbasha/jordanstreetart" target="_blank">Github!</a> </p>
-            <h4>Changelog V2.1</h4>
+            <h4>Changelog V2.3</h4>
             <hr></hr>
             <ul>
-                <li>Added 3 new murals.</li>
-                <li>Added user control options.</li>
+                <li>Added 30 new murals.</li>
+                <li>Added new timeline feature.</li>
                 <li>Some bug fixes.</li>
             </ul>
             <h4>Future updates</h4>

@@ -26,6 +26,7 @@ case $1 in
       sqlite3 mawaheb/streetart.db < sql/data.sql
       sqlite3 mawaheb/streetart.db < sql/artist_data.sql
       sqlite3 mawaheb/streetart.db < sql/credits_data.sql
+      sqlite3 mawaheb/streetart.db < sql/tagover_data.sql
       cp sql/uploads/* public/hd_images/
       cp sql/uploads/* public/images/
       for i in public/images/*.jpg; do
@@ -48,6 +49,7 @@ case $1 in
     sqlite3 mawaheb/streetart.db < sql/data.sql
     sqlite3 mawaheb/streetart.db < sql/artist_data.sql
     sqlite3 mawaheb/streetart.db < sql/credits_data.sql
+    sqlite3 mawaheb/streetart.db < sql/tagover_data.sql
     cp sql/uploads/* public/hd_images/
     cp sql/uploads/* public/images/
     for i in public/images/*.jpg; do

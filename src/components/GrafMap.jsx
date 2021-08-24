@@ -8,6 +8,7 @@ import GrafMarker from './Markers/GrafMarker'
 import GrafPopup from './GrafPopup'
 import useSupercluster from 'use-supercluster';
 import InfoModal from './Modals/InfoModal';
+import TimelineModal from './Modals/TimelineModal'
 
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import Button from 'react-bootstrap/Button';
@@ -34,6 +35,8 @@ function GrafMap() {
   const[artistWork, setArtistWork] = useState([]);
   //show popup state
   const [showPopup, setShowPopup] = useState(false);
+  //show timeline modal
+  const [showTimeline, setShowTimeline] = useState(false);
   //radius
   const [radius, setRadius] = useState(40);
 
@@ -297,8 +300,16 @@ function GrafMap() {
               onHide={()=>{setShowInfo(false); setArtistWork([])}}
               artistWork = {artistWork}
               onInfoMarkerClick={onInfoMarkerClick}
+              showTimeline={()=>{setShowTimeline(true); setShowInfo(false)}}
               />
               }
+        {(showTimeline !== false) &&
+            <TimelineModal
+                grafData={data[collectionId].collections[collectionIndex]}
+                show={showTimeline}
+                onHide={()=>{setShowTimeline(false); setShowInfo(true)}}
+            />
+        }
               <div style = {{right:8}}>
                 <NavigationControl showCompass={false}>
 
