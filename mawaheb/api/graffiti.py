@@ -97,3 +97,5 @@ def get_graffiti_data():
     else:
         return 'Directory not loaded, please load the website first before requesting data about the art', 400
 
+if __name__ == "__main__":
+    mawaheb.app.run()
